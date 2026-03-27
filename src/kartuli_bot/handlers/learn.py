@@ -1,5 +1,7 @@
+import logging
 import re
 import unicodedata
+from html import escape as html_escape
 
 from aiogram import F, Router
 from aiogram.filters import Command
@@ -8,8 +10,12 @@ from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import CallbackQuery, Message
 
 from ..db import Database
-from ..keyboards import session_size_keyboard, skip_keyboard
+from ..keyboards import SESSION_PRESETS, session_size_keyboard, skip_keyboard
 from ..leitner import BOX_LABELS
+
+logger = logging.getLogger(__name__)
+
+MAX_SESSION_SIZE = max(SESSION_PRESETS)
 
 router = Router()
 
@@ -96,8 +102,8 @@ async def _send_next_session_card(
         )
         return
 
-    front = card["front_side"]
-    translit = card["transliteration"]
+    front = html_escape(card["front_side"])
+    translit = html_escape(card["transliteration"] or "")
     box = card["current_box"]
     total = len(card_ids)
     text = f"[{index + 1}/{total}] Box {box}\n\n{front}"
@@ -140,8 +146,13 @@ async def pick_session_size(
 ) -> None:
     if not callback.from_user or not callback.message or not callback.data:
         return
+    try:
+        limit = int(callback.data.split(":")[1])
+    except (ValueError, IndexError):
+        await callback.answer()
+        return
+    limit = max(1, min(limit, MAX_SESSION_SIZE))
     user_id = db.ensure_user(callback.from_user.id, default_timezone)
-    limit = int(callback.data.split(":")[1])
 
     card_ids = db.get_session_card_ids_limited(user_id, limit)
     if not card_ids:
@@ -189,13 +200,15 @@ async def check_answer(
     accepted = _accepted_answers(card["back_side"])
     correct = user_answer in accepted
 
+    front = html_escape(card["front_side"])
+    back = html_escape(card["back_side"])
     if correct:
         db.review_card(user_id, card_id, was_correct=True)
-        await message.answer(f"Правильно!\n\n{card['front_side']} — {card['back_side']}")
+        await message.answer(f"Правильно!\n\n{front} — {back}")
     else:
         db.review_card(user_id, card_id, was_correct=False)
         await message.answer(
-            f"Неправильно.\n\n{card['front_side']} — {card['back_side']}\n\n"
+            f"Неправильно.\n\n{front} — {back}\n\n"
             "Карточка вернулась в Box 1."
         )
 
@@ -208,13 +221,19 @@ async def skip_card(
 ) -> None:
     if not callback.from_user or not callback.message or not callback.data:
         return
+    try:
+        card_id = int(callback.data.split(":")[1])
+    except (ValueError, IndexError):
+        await callback.answer()
+        return
     user_id = db.ensure_user(callback.from_user.id, default_timezone)
-    card_id = int(callback.data.split(":")[1])
     card = db.get_card_for_review(user_id, card_id)
     if card:
         db.review_card(user_id, card_id, was_correct=False)
+        front = html_escape(card["front_side"])
+        back = html_escape(card["back_side"])
         await callback.message.answer(
-            f"Ответ: {card['front_side']} — {card['back_side']}\n\nКарточка вернулась в Box 1."
+            f"Ответ: {front} — {back}\n\nКарточка вернулась в Box 1."
         )
     await callback.answer()
     await _send_next_session_card(callback.message, db, user_id, state)

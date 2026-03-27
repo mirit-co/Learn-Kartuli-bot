@@ -315,7 +315,7 @@ class Database:
                 timezone = row["timezone"]
                 try:
                     local = now_utc.astimezone(ZoneInfo(timezone))
-                except Exception:
+                except (KeyError, ValueError):
                     continue
                 hh_mm = local.strftime("%H:%M")
                 local_date = local.date().isoformat()

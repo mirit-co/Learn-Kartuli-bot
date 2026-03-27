@@ -30,7 +30,7 @@ async def settings(message: Message, db: Database, default_timezone: str) -> Non
             return
         try:
             ZoneInfo(timezone)
-        except Exception:
+        except (KeyError, ValueError):
             await message.answer("Invalid timezone. Example: Europe/Tbilisi")
             return
         db.update_reminder_settings(user_id, reminder_time=reminder_time, timezone=timezone)
