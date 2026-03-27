@@ -8,12 +8,14 @@ from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import CallbackQuery, Message
 
 from ..db import Database
-from ..keyboards import skip_keyboard
+from ..keyboards import session_config_keyboard, skip_keyboard
+from ..leitner import BOX_LABELS
 
 router = Router()
 
 
 class ReviewSession(StatesGroup):
+    configuring = State()
     waiting_for_answer = State()
 
 
@@ -57,24 +59,55 @@ def _format_session_summary(db: Database, user_id: int) -> str:
     )
 
 
-async def _send_next_due(message: Message, db: Database, user_id: int, state: FSMContext) -> None:
-    due_card = db.get_due_card(user_id)
-    if not due_card:
+def _format_config_text(
+    due_per_box: dict[int, int], selected_per_box: dict[int, int]
+) -> str:
+    lines = ["📋 Session setup\n"]
+    for box in sorted(due_per_box):
+        due = due_per_box[box]
+        if due <= 0:
+            continue
+        selected = selected_per_box.get(box, due)
+        label = BOX_LABELS.get(box, f"box {box}")
+        lines.append(f"Box {box} ({label}): {due} due → {selected} selected")
+    total = sum(selected_per_box.get(b, due_per_box.get(b, 0)) for b in due_per_box)
+    lines.append(f"\nTotal: {total} cards")
+    lines.append("\nTap buttons to adjust, then press Start:")
+    return "\n".join(lines)
+
+
+async def _send_next_session_card(
+    message: Message, db: Database, user_id: int, state: FSMContext
+) -> None:
+    data = await state.get_data()
+    card_ids = data.get("session_card_ids", [])
+    index = data.get("session_index", 0)
+
+    while index < len(card_ids):
+        card_id = card_ids[index]
+        card = db.get_card_for_review(user_id, card_id)
+        if card:
+            break
+        index += 1
+    else:
         await state.clear()
         await message.answer(
-            "No cards due today. Great work!\n\n" + _format_session_summary(db, user_id)
+            "Session complete!\n\n" + _format_session_summary(db, user_id)
         )
         return
-    front = due_card["front_side"]
-    translit = due_card["transliteration"]
-    box = due_card["current_box"]
-    text = f"Box {box}\n\n{front}"
+
+    front = card["front_side"]
+    translit = card["transliteration"]
+    box = card["current_box"]
+    total = len(card_ids)
+    text = f"[{index + 1}/{total}] Box {box}\n\n{front}"
     if translit:
         text += f"\n({translit})"
     text += "\n\nНапиши перевод на русском:"
+
     await state.set_state(ReviewSession.waiting_for_answer)
-    await state.update_data(card_id=int(due_card["id"]))
-    await message.answer(text, reply_markup=skip_keyboard(int(due_card["id"])))
+    await state.update_data(card_id=int(card["id"]), session_index=index + 1)
+    await message.answer(text, reply_markup=skip_keyboard(int(card["id"])))
 
 
 @router.message(Command("learn"))
@@ -83,7 +116,66 @@ async def learn(message: Message, db: Database, default_timezone: str, state: FS
         return
     user_id = db.ensure_user(message.from_user.id, default_timezone)
     db.ensure_user_cards(user_id)
-    await _send_next_due(message, db, user_id, state)
+    due_per_box = db.get_due_counts_per_box(user_id)
+
+    if not any(due_per_box.values()):
+        await message.answer(
+            "No cards due today. Great work!\n\n" + _format_session_summary(db, user_id)
+        )
+        return
+
+    selected = dict(due_per_box)
+    await state.set_state(ReviewSession.configuring)
+    await state.update_data(due_per_box=due_per_box, selected_per_box=selected)
+
+    text = _format_config_text(due_per_box, selected)
+    await message.answer(text, reply_markup=session_config_keyboard(due_per_box, selected))
+
+
+@router.callback_query(F.data.startswith("box:"), ReviewSession.configuring)
+async def set_box_limit(callback: CallbackQuery, state: FSMContext) -> None:
+    if not callback.data or not callback.message:
+        return
+    parts = callback.data.split(":")
+    box = int(parts[1])
+    limit = int(parts[2])
+
+    data = await state.get_data()
+    selected = {int(k): v for k, v in data.get("selected_per_box", {}).items()}
+    due_per_box = {int(k): v for k, v in data.get("due_per_box", {}).items()}
+
+    selected[box] = limit
+    await state.update_data(selected_per_box=selected)
+
+    text = _format_config_text(due_per_box, selected)
+    await callback.message.edit_text(
+        text, reply_markup=session_config_keyboard(due_per_box, selected)
+    )
+    await callback.answer()
+
+
+@router.callback_query(F.data == "session:start", ReviewSession.configuring)
+async def start_session(
+    callback: CallbackQuery, db: Database, default_timezone: str, state: FSMContext
+) -> None:
+    if not callback.from_user or not callback.message:
+        return
+    user_id = db.ensure_user(callback.from_user.id, default_timezone)
+    data = await state.get_data()
+    selected = {int(k): v for k, v in data.get("selected_per_box", {}).items()}
+
+    card_ids = db.get_session_card_ids(user_id, selected)
+    if not card_ids:
+        await callback.message.edit_text("No cards selected. Use /learn to start again.")
+        await state.clear()
+        await callback.answer()
+        return
+
+    total = len(card_ids)
+    await callback.message.edit_text(f"Starting session with {total} cards...")
+    await state.update_data(session_card_ids=card_ids, session_index=0)
+    await callback.answer()
+    await _send_next_session_card(callback.message, db, user_id, state)
 
 
 @router.message(Command("today"))
@@ -109,9 +201,9 @@ async def check_answer(
         await state.clear()
         return
 
-    card = db.get_due_card_by_id(user_id, card_id)
+    card = db.get_card_for_review(user_id, card_id)
     if not card:
-        await _send_next_due(message, db, user_id, state)
+        await _send_next_session_card(message, db, user_id, state)
         return
 
     user_answer = _normalize(message.text)
@@ -128,7 +220,7 @@ async def check_answer(
             "Карточка вернулась в Box 1."
         )
 
-    await _send_next_due(message, db, user_id, state)
+    await _send_next_session_card(message, db, user_id, state)
 
 
 @router.callback_query(F.data.startswith("skip:"))
@@ -139,11 +231,11 @@ async def skip_card(
         return
     user_id = db.ensure_user(callback.from_user.id, default_timezone)
     card_id = int(callback.data.split(":")[1])
-    card = db.get_due_card_by_id(user_id, card_id)
+    card = db.get_card_for_review(user_id, card_id)
     if card:
         db.review_card(user_id, card_id, was_correct=False)
         await callback.message.answer(
             f"Ответ: {card['front_side']} — {card['back_side']}\n\nКарточка вернулась в Box 1."
         )
     await callback.answer()
-    await _send_next_due(callback.message, db, user_id, state)
+    await _send_next_session_card(callback.message, db, user_id, state)

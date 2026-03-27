@@ -121,6 +121,59 @@ class Database:
                 (user_id, today),
             ).fetchone()
 
+    def get_due_counts_per_box(self, user_id: int) -> dict[int, int]:
+        today = date.today().isoformat()
+        with self.connect() as conn:
+            rows = conn.execute(
+                """
+                SELECT current_box, COUNT(*) AS cnt
+                FROM user_cards
+                WHERE user_id = ? AND next_review_date <= ?
+                GROUP BY current_box
+                ORDER BY current_box
+                """,
+                (user_id, today),
+            ).fetchall()
+            return {int(r["current_box"]): int(r["cnt"]) for r in rows}
+
+    def get_session_card_ids(
+        self, user_id: int, box_limits: dict[int, int]
+    ) -> list[int]:
+        today = date.today().isoformat()
+        card_ids: list[int] = []
+        with self.connect() as conn:
+            for box in sorted(box_limits):
+                limit = box_limits[box]
+                if limit <= 0:
+                    continue
+                rows = conn.execute(
+                    """
+                    SELECT uc.card_id
+                    FROM user_cards uc
+                    WHERE uc.user_id = ? AND uc.next_review_date <= ?
+                      AND uc.current_box = ?
+                    ORDER BY uc.next_review_date ASC
+                    LIMIT ?
+                    """,
+                    (user_id, today, box, limit),
+                ).fetchall()
+                card_ids.extend(int(r["card_id"]) for r in rows)
+        return card_ids
+
+    def get_card_for_review(self, user_id: int, card_id: int) -> sqlite3.Row | None:
+        """Fetch card data without checking next_review_date (for pre-selected sessions)."""
+        with self.connect() as conn:
+            return conn.execute(
+                """
+                SELECT c.id, c.front_side, c.back_side, c.transliteration, uc.current_box
+                FROM user_cards uc
+                JOIN cards c ON c.id = uc.card_id
+                WHERE uc.user_id = ? AND uc.card_id = ?
+                LIMIT 1
+                """,
+                (user_id, card_id),
+            ).fetchone()
+
     def get_due_card_by_id(self, user_id: int, card_id: int) -> sqlite3.Row | None:
         today = date.today().isoformat()
         with self.connect() as conn:

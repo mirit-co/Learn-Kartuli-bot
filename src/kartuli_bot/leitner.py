@@ -9,6 +9,14 @@ BOX_INTERVALS_DAYS = {
     5: 30,
 }
 
+BOX_LABELS = {
+    1: "daily",
+    2: "every 2 days",
+    3: "weekly",
+    4: "every 2 weeks",
+    5: "monthly",
+}
+
 
 def clamp_box(box: int) -> int:
     return max(1, min(5, box))
