@@ -8,14 +8,14 @@ from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import CallbackQuery, Message
 
 from ..db import Database
-from ..keyboards import session_config_keyboard, skip_keyboard
+from ..keyboards import session_size_keyboard, skip_keyboard
 from ..leitner import BOX_LABELS
 
 router = Router()
 
 
 class ReviewSession(StatesGroup):
-    configuring = State()
+    choosing_size = State()
     waiting_for_answer = State()
 
 
@@ -51,28 +51,28 @@ def _format_session_summary(db: Database, user_id: int) -> str:
     remembered = stats["remembered"]
     remember_rate = int((remembered / reviewed) * 100) if reviewed else 0
     return (
-        "Session summary:\n"
-        f"- Reviewed: {reviewed}\n"
-        f"- Remembered: {remembered}\n"
-        f"- Remember rate: {remember_rate}%\n"
-        f"- Due tomorrow: {due_tomorrow}"
+        "Итоги сессии:\n"
+        f"- Повторено: {reviewed}\n"
+        f"- Запомнила: {remembered}\n"
+        f"- Процент: {remember_rate}%\n"
+        f"- На завтра: {due_tomorrow}"
     )
 
 
-def _format_config_text(
-    due_per_box: dict[int, int], selected_per_box: dict[int, int]
-) -> str:
-    lines = ["📋 Session setup\n"]
-    for box in sorted(due_per_box):
-        due = due_per_box[box]
-        if due <= 0:
-            continue
-        selected = selected_per_box.get(box, due)
-        label = BOX_LABELS.get(box, f"box {box}")
-        lines.append(f"Box {box} ({label}): {due} due → {selected} selected")
-    total = sum(selected_per_box.get(b, due_per_box.get(b, 0)) for b in due_per_box)
-    lines.append(f"\nTotal: {total} cards")
-    lines.append("\nTap buttons to adjust, then press Start:")
+def _format_due_overview(due_per_box: dict[int, int], new_count: int) -> str:
+    total_due = sum(due_per_box.values())
+    lines = ["📋 Today's session\n"]
+    if total_due > 0:
+        lines.append(f"Due for review: {total_due}")
+        for box in sorted(due_per_box):
+            count = due_per_box[box]
+            if count <= 0:
+                continue
+            label = BOX_LABELS.get(box, f"box {box}")
+            lines.append(f"  Box {box} ({label}): {count}")
+    if new_count > 0:
+        lines.append(f"New cards: {new_count}")
+    lines.append("\nHow many cards to learn?")
     return "\n".join(lines)
 
 
@@ -92,7 +92,7 @@ async def _send_next_session_card(
     else:
         await state.clear()
         await message.answer(
-            "Session complete!\n\n" + _format_session_summary(db, user_id)
+            "Отличная работа, увидимся завтра! 🎉\n\n" + _format_session_summary(db, user_id)
         )
         return
 
@@ -117,62 +117,41 @@ async def learn(message: Message, db: Database, default_timezone: str, state: FS
     user_id = db.ensure_user(message.from_user.id, default_timezone)
     db.ensure_user_cards(user_id)
     due_per_box = db.get_due_counts_per_box(user_id)
+    new_count = db.get_new_card_count(user_id)
+    total_due = sum(due_per_box.values())
+    total_available = total_due + new_count
 
-    if not any(due_per_box.values()):
+    if total_available == 0:
         await message.answer(
             "No cards due today. Great work!\n\n" + _format_session_summary(db, user_id)
         )
         return
 
-    selected = dict(due_per_box)
-    await state.set_state(ReviewSession.configuring)
-    await state.update_data(due_per_box=due_per_box, selected_per_box=selected)
+    await state.set_state(ReviewSession.choosing_size)
+    await state.update_data(user_id=user_id)
 
-    text = _format_config_text(due_per_box, selected)
-    await message.answer(text, reply_markup=session_config_keyboard(due_per_box, selected))
-
-
-@router.callback_query(F.data.startswith("box:"), ReviewSession.configuring)
-async def set_box_limit(callback: CallbackQuery, state: FSMContext) -> None:
-    if not callback.data or not callback.message:
-        return
-    parts = callback.data.split(":")
-    box = int(parts[1])
-    limit = int(parts[2])
-
-    data = await state.get_data()
-    selected = {int(k): v for k, v in data.get("selected_per_box", {}).items()}
-    due_per_box = {int(k): v for k, v in data.get("due_per_box", {}).items()}
-
-    selected[box] = limit
-    await state.update_data(selected_per_box=selected)
-
-    text = _format_config_text(due_per_box, selected)
-    await callback.message.edit_text(
-        text, reply_markup=session_config_keyboard(due_per_box, selected)
-    )
-    await callback.answer()
+    text = _format_due_overview(due_per_box, new_count)
+    await message.answer(text, reply_markup=session_size_keyboard(total_available))
 
 
-@router.callback_query(F.data == "session:start", ReviewSession.configuring)
-async def start_session(
+@router.callback_query(F.data.startswith("session:"), ReviewSession.choosing_size)
+async def pick_session_size(
     callback: CallbackQuery, db: Database, default_timezone: str, state: FSMContext
 ) -> None:
-    if not callback.from_user or not callback.message:
+    if not callback.from_user or not callback.message or not callback.data:
         return
     user_id = db.ensure_user(callback.from_user.id, default_timezone)
-    data = await state.get_data()
-    selected = {int(k): v for k, v in data.get("selected_per_box", {}).items()}
+    limit = int(callback.data.split(":")[1])
 
-    card_ids = db.get_session_card_ids(user_id, selected)
+    card_ids = db.get_session_card_ids_limited(user_id, limit)
     if not card_ids:
-        await callback.message.edit_text("No cards selected. Use /learn to start again.")
+        await callback.message.edit_text("No cards available. Use /learn to try again.")
         await state.clear()
         await callback.answer()
         return
 
     total = len(card_ids)
-    await callback.message.edit_text(f"Starting session with {total} cards...")
+    await callback.message.edit_text(f"Starting session — {total} cards")
     await state.update_data(session_card_ids=card_ids, session_index=0)
     await callback.answer()
     await _send_next_session_card(callback.message, db, user_id, state)

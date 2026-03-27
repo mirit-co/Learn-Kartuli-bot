@@ -1,8 +1,9 @@
-from aiogram import Router
+from aiogram import F, Router
 from aiogram.filters import CommandStart
-from aiogram.types import Message
+from aiogram.types import CallbackQuery, Message
 
 from ..db import Database
+from ..keyboards import onboarding_keyboard
 
 router = Router()
 
@@ -16,33 +17,40 @@ async def start(message: Message, db: Database, default_timezone: str) -> None:
         "🇬🇪 Kartuli — учим грузинский каждый день\n"
         "\n"
         "Здесь 111 карточек уровня A1: алфавит, "
-        "числа, фразы для магазина, рынка, транспорта "
-        "и повседневного общения.\n"
+        "числа, фразы и преломлений для магазина, рынка, "
+        "транспорта и повседневного общения.\n"
         "\n"
         "📖 Метод — система Лейтнера (интервальное повторение):\n"
         "• Новые и забытые слова — каждый день\n"
-        "• Запомнил — карточка уходит на повтор через "
+        "• Запомнили — карточка уходит на повтор через "
         "2, 7, 14, а потом 30 дней\n"
-        "• Ошибся — карточка возвращается в начало\n"
+        "• Ошиблись — карточка возвращается в начало\n"
         "\n"
-        "📊 Сколько карточек в день:\n"
-        "• В первый день — все 111 карточек (33 буквы алфавита, "
-        "30 фраз для общения, 16 для магазина, "
-        "14 для рынка, 13 для транспорта, 5 чисел)\n"
-        "• Дальше — только те, что подошли по расписанию: "
-        "забытые + карточки из старших коробок\n"
-        "• Обычно 15–30 карточек в день\n"
+        "Каждый день вы выбираете сколько карточек "
+        "хотите изучить и повторить. "
+        "Есть выбор 10, 15 или 20.\n"
         "\n"
-        "🗓 Что делать каждый день:\n"
-        "1. Нажми /learn — бот покажет все карточки на сегодня\n"
-        "2. Напиши перевод или нажми «Не знаю»\n"
-        "3. 5–10 минут в день — и через пару месяцев "
-        "заговоришь на базовом уровне\n"
-        "\n"
-        "Команды:\n"
-        "/learn — начать повторение\n"
-        "/today — сколько карточек на сегодня\n"
-        "/stats — прогресс по коробкам\n"
-        "/settings HH:MM — напоминание на каждый день\n"
-        "/skill — навыки курса"
+        "Приятного изучения!",
+        reply_markup=onboarding_keyboard(),
     )
+
+
+@router.callback_query(F.data == "onboard:today")
+async def onboard_today(callback: CallbackQuery, db: Database, default_timezone: str) -> None:
+    if not callback.from_user or not callback.message:
+        return
+    await callback.message.edit_reply_markup(reply_markup=None)
+    await callback.answer()
+    user_id = db.ensure_user(callback.from_user.id, default_timezone)
+    db.ensure_user_cards(user_id)
+    await callback.message.answer("Отлично, поехали! Жми /learn 🚀")
+
+
+@router.callback_query(F.data == "onboard:tomorrow")
+async def onboard_tomorrow(callback: CallbackQuery, db: Database, default_timezone: str) -> None:
+    if not callback.from_user or not callback.message:
+        return
+    await callback.message.edit_reply_markup(reply_markup=None)
+    await callback.answer()
+    db.ensure_user(callback.from_user.id, default_timezone)
+    await callback.message.answer("Хорошо! Напомню тебе завтра в 10:00 ☀️")

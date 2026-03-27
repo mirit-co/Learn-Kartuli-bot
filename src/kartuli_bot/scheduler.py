@@ -15,9 +15,9 @@ async def reminder_loop(bot: Bot, db: Database) -> None:
         for item in due_users:
             due_count = db.get_due_count(item["user_id"])
             text = (
-                "Kartuli reminder: time to learn Georgian.\n"
-                f"Cards due now: {due_count}\n"
-                "Use /learn to start."
+                "Давай поучим новые слова! 🇬🇪\n"
+                f"Карточек на сегодня: {due_count}\n"
+                "Жми /learn — начнём!"
             )
             try:
                 await bot.send_message(chat_id=item["telegram_id"], text=text)

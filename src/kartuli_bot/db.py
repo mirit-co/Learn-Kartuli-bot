@@ -72,7 +72,7 @@ class Database:
             conn.execute(
                 """
                 INSERT INTO reminder_settings(user_id, reminder_time, enabled, timezone)
-                VALUES(?, '09:00', 1, ?)
+                VALUES(?, '10:00', 1, ?)
                 """,
                 (user_id, default_timezone),
             )
@@ -93,8 +93,9 @@ class Database:
             conn.commit()
             return user_id
 
+    _NEW_CARD_DATE = "9999-12-31"
+
     def ensure_user_cards(self, user_id: int) -> None:
-        today = date.today().isoformat()
         with self.connect() as conn:
             conn.execute(
                 """
@@ -102,7 +103,7 @@ class Database:
                 SELECT ?, c.id, 1, ?
                 FROM cards c
                 """,
-                (user_id, today),
+                (user_id, self._NEW_CARD_DATE),
             )
             conn.commit()
 
@@ -136,29 +137,49 @@ class Database:
             ).fetchall()
             return {int(r["current_box"]): int(r["cnt"]) for r in rows}
 
-    def get_session_card_ids(
-        self, user_id: int, box_limits: dict[int, int]
-    ) -> list[int]:
+    def get_session_card_ids_limited(self, user_id: int, limit: int) -> list[int]:
+        """Build a session queue: due reviews first, then new (unseen) cards."""
         today = date.today().isoformat()
-        card_ids: list[int] = []
         with self.connect() as conn:
-            for box in sorted(box_limits):
-                limit = box_limits[box]
-                if limit <= 0:
-                    continue
-                rows = conn.execute(
+            due_rows = conn.execute(
+                """
+                SELECT uc.card_id
+                FROM user_cards uc
+                WHERE uc.user_id = ? AND uc.next_review_date <= ?
+                ORDER BY uc.current_box ASC, uc.next_review_date ASC
+                LIMIT ?
+                """,
+                (user_id, today, limit),
+            ).fetchall()
+            card_ids = [int(r["card_id"]) for r in due_rows]
+
+            remaining = limit - len(card_ids)
+            if remaining > 0:
+                new_rows = conn.execute(
                     """
                     SELECT uc.card_id
                     FROM user_cards uc
-                    WHERE uc.user_id = ? AND uc.next_review_date <= ?
-                      AND uc.current_box = ?
-                    ORDER BY uc.next_review_date ASC
+                    WHERE uc.user_id = ? AND uc.next_review_date = ?
+                    ORDER BY uc.card_id ASC
                     LIMIT ?
                     """,
-                    (user_id, today, box, limit),
+                    (user_id, self._NEW_CARD_DATE, remaining),
                 ).fetchall()
-                card_ids.extend(int(r["card_id"]) for r in rows)
-        return card_ids
+                card_ids.extend(int(r["card_id"]) for r in new_rows)
+
+            return card_ids
+
+    def get_new_card_count(self, user_id: int) -> int:
+        with self.connect() as conn:
+            row = conn.execute(
+                """
+                SELECT COUNT(*) AS c
+                FROM user_cards
+                WHERE user_id = ? AND next_review_date = ?
+                """,
+                (user_id, self._NEW_CARD_DATE),
+            ).fetchone()
+            return int(row["c"])
 
     def get_card_for_review(self, user_id: int, card_id: int) -> sqlite3.Row | None:
         """Fetch card data without checking next_review_date (for pre-selected sessions)."""

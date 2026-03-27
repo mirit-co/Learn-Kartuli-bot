@@ -23,15 +23,16 @@ class DatabaseTests(unittest.TestCase):
     def tearDown(self) -> None:
         self.tmp.cleanup()
 
-    def test_due_cards_exist_for_new_user(self) -> None:
-        self.assertGreater(self.db.get_due_count(self.user_id), 0)
-        due = self.db.get_due_card(self.user_id)
-        self.assertIsNotNone(due)
+    def test_new_cards_available_for_new_user(self) -> None:
+        self.assertEqual(self.db.get_due_count(self.user_id), 0)
+        self.assertGreater(self.db.get_new_card_count(self.user_id), 0)
+        card_ids = self.db.get_session_card_ids_limited(self.user_id, 10)
+        self.assertEqual(len(card_ids), 10)
 
     def test_review_updates_box_and_logs_event(self) -> None:
-        due = self.db.get_due_card(self.user_id)
-        assert due is not None
-        card_id = int(due["id"])
+        card_ids = self.db.get_session_card_ids_limited(self.user_id, 1)
+        self.assertEqual(len(card_ids), 1)
+        card_id = card_ids[0]
         self.db.review_card(self.user_id, card_id, was_correct=True)
 
         with self.db.connect() as conn:

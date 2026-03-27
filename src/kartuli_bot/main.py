@@ -6,6 +6,7 @@ from pathlib import Path
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
+from aiogram.types import BotCommand, MenuButtonCommands
 
 from .config import load_settings
 from .db import Database
@@ -43,6 +44,15 @@ async def main() -> None:
     dp.include_router(skill_router)
     dp.include_router(settings_router)
     dp.include_router(stats_router)
+
+    await bot.set_my_commands([
+        BotCommand(command="learn", description="Учить слова"),
+        BotCommand(command="stats", description="Мой прогресс"),
+        BotCommand(command="settings", description="Настройки напоминаний"),
+        BotCommand(command="reminder_on", description="Включить напоминания"),
+        BotCommand(command="reminder_off", description="Выключить напоминания"),
+    ])
+    await bot.set_chat_menu_button(menu_button=MenuButtonCommands())
 
     scheduler_task = asyncio.create_task(reminder_loop(bot, db))
     try:
