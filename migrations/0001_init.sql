@@ -1,0 +1,60 @@
+CREATE TABLE IF NOT EXISTS users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  telegram_id INTEGER UNIQUE NOT NULL,
+  native_language TEXT NOT NULL DEFAULT 'ru',
+  target_language TEXT NOT NULL DEFAULT 'ka',
+  timezone TEXT NOT NULL DEFAULT 'Europe/Tbilisi',
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS cards (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  front_side TEXT NOT NULL,
+  back_side TEXT NOT NULL,
+  topic TEXT NOT NULL DEFAULT 'general',
+  transliteration TEXT,
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS user_cards (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL,
+  card_id INTEGER NOT NULL,
+  current_box INTEGER NOT NULL DEFAULT 1,
+  next_review_date TEXT NOT NULL,
+  last_reviewed_at TEXT,
+  UNIQUE(user_id, card_id),
+  FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY(card_id) REFERENCES cards(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS review_events (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL,
+  card_id INTEGER NOT NULL,
+  was_correct INTEGER NOT NULL,
+  previous_box INTEGER NOT NULL,
+  new_box INTEGER NOT NULL,
+  reviewed_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY(card_id) REFERENCES cards(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS reminder_settings (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER UNIQUE NOT NULL,
+  reminder_time TEXT NOT NULL DEFAULT '09:00',
+  enabled INTEGER NOT NULL DEFAULT 1,
+  timezone TEXT NOT NULL DEFAULT 'Europe/Tbilisi',
+  FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS skill_configs (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL,
+  skill_name TEXT NOT NULL,
+  skill_version TEXT NOT NULL,
+  config_json TEXT NOT NULL DEFAULT '{}',
+  UNIQUE(user_id, skill_name),
+  FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+);
