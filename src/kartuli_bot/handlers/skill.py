@@ -24,21 +24,21 @@ async def skill(message: Message, db: Database, default_timezone: str) -> None:
         skill_name = parts[1]
         version = parts[2]
         if not _VERSION_RE.match(version):
-            await message.answer("Invalid version format. Use semver: X.Y.Z")
+            await message.answer("Неверный формат версии. Нужен semver: X.Y.Z")
             return
         updated = service.upgrade_for_user(user_id, skill_name, version)
         if not updated:
-            await message.answer("Unknown skill name.")
+            await message.answer("Не знаю такого навыка.")
             return
         await message.answer(
-            f"Updated {html_escape(skill_name)} to version {html_escape(version)}."
+            f"Обновила {html_escape(skill_name)} до версии {html_escape(version)}."
         )
         return
     if len(parts) != 1:
-        await message.answer("Usage: /skill or /skill &lt;name&gt; &lt;version&gt;")
+        await message.answer("Использование: /skill или /skill &lt;имя&gt; &lt;версия&gt;")
         return
     skills = service.list_for_user(user_id)
-    lines = ["Your skills:\n"]
+    lines = ["Твои навыки:\n"]
     for item in skills:
         name = html_escape(item["name"])
         version = html_escape(item["version"])
@@ -46,5 +46,5 @@ async def skill(message: Message, db: Database, default_timezone: str) -> None:
         desc = html_escape(item["description"])
         lines.append(f"<b>{name}</b> v{version} ({phase})")
         lines.append(f"  {desc}\n")
-    lines.append("Upgrade: /skill &lt;name&gt; &lt;version&gt;")
+    lines.append("Обновить: /skill &lt;имя&gt; &lt;версия&gt;")
     await message.answer("\n".join(lines))

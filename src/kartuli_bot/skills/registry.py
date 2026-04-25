@@ -10,85 +10,59 @@ class SkillDefinition:
 
 
 SKILLS: dict[str, SkillDefinition] = {
-    "vocabulary_curator": SkillDefinition(
-        name="vocabulary_curator",
+    "vocabulary_curator_a1": SkillDefinition(
+        name="vocabulary_curator_a1",
         description=(
-            "Curates and sequences vocabulary cards. Alphabet is never taught "
-            "as isolated letters — each letter card pairs the letter with a real "
-            "word starting with it (letter + word + translation). Controls topic "
-            "unlock order and manages the A1 curriculum path."
-        ),
-        default_version="1.1.0",
-        phase="v1",
-    ),
-    "session_planner": SkillDefinition(
-        name="session_planner",
-        description=(
-            "Plans each daily review session: controls how many cards to show, "
-            "review order within a session, spacing between repeats, and "
-            "when to introduce new cards versus review old ones."
+            "Curates A1 vocabulary content by topic and keeps the alphabet flow "
+            "as letter + anchor word. Produces card content fields such as "
+            "transliteration and examples."
         ),
         default_version="1.0.0",
         phase="v1",
     ),
-    "answer_evaluator": SkillDefinition(
-        name="answer_evaluator",
+    "srs_engine": SkillDefinition(
+        name="srs_engine",
         description=(
-            "Evaluates user recall via typed answers: the user types the Russian "
-            "translation, the bot normalizes both strings and checks for a match. "
-            "Accepts alternative forms (e.g. 'пакет' or 'сумка' for 'пакет/сумка'). "
-            "For alphabet cards, accepts just the word part after ' — '."
-        ),
-        default_version="1.1.0",
-        phase="v1",
-    ),
-    "daily_reminder": SkillDefinition(
-        name="daily_reminder",
-        description=(
-            "Manages daily learning reminders: controls notification timing, "
-            "snooze windows, and recovery behavior when the user misses a day."
+            "Implements strict SRS logic: 5 boxes, binary outcomes, due-only "
+            "queue ordering, and next review date calculations."
         ),
         default_version="1.0.0",
         phase="v1",
     ),
-    "deck_validator": SkillDefinition(
-        name="deck_validator",
+    "answer_evaluator_ru_ka": SkillDefinition(
+        name="answer_evaluator_ru_ka",
         description=(
-            "Validates deck integrity before import: detects duplicate cards, "
-            "missing translations, empty fields, and inconsistent "
-            "transliterations to keep content quality high."
+            "Evaluates typed answers with deterministic normalization and binary "
+            "correct/wrong output, including a small typo tolerance threshold."
         ),
         default_version="1.0.0",
         phase="v1",
     ),
-    "load_adjuster": SkillDefinition(
-        name="load_adjuster",
+    "session_runner": SkillDefinition(
+        name="session_runner",
         description=(
-            "Dynamically adjusts daily card load based on user retention rate "
-            "and streak length. Adds extra reviews for weak cards and reduces "
-            "volume when the user is overwhelmed."
+            "Runs review sessions card-by-card using due-only queues and delegates "
+            "grading to answer evaluator and box updates to SRS engine."
         ),
-        default_version="0.1.0",
-        phase="v2",
+        default_version="1.0.0",
+        phase="v1",
     ),
-    "streak_coach": SkillDefinition(
-        name="streak_coach",
+    "telegram_ux": SkillDefinition(
+        name="telegram_ux",
         description=(
-            "Generates motivational messages: streak-aware nudges, weekly "
-            "goals, milestone celebrations, and gentle re-engagement prompts "
-            "after missed days."
+            "Controls Telegram interaction layer: reminder settings, in-session "
+            "buttons, and progress snapshots in SRS terms."
         ),
-        default_version="0.1.0",
-        phase="v2",
+        default_version="1.0.0",
+        phase="v1",
     ),
-    "pronunciation_guide": SkillDefinition(
-        name="pronunciation_guide",
+    "card_intake": SkillDefinition(
+        name="card_intake",
         description=(
-            "Controls pronunciation and transliteration support: decides hint "
-            "depth, when to show/hide transliteration as the user progresses, "
-            "and optional audio integration."
+            "Accepts user-provided lexical units from real-life situations and "
+            "creates paired KA→RU and RU→KA cards in Box 1."
         ),
-        default_version="0.1.0",
-        phase="v2",
+        default_version="1.0.0",
+        phase="v1",
     ),
 }

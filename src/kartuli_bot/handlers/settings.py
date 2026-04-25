@@ -26,26 +26,26 @@ async def settings(message: Message, db: Database, default_timezone: str) -> Non
         reminder_time = parts[1]
         timezone = parts[2]
         if not _is_valid_hhmm(reminder_time):
-            await message.answer("Invalid time format. Use /settings HH:MM Area/City")
+            await message.answer("Неверный формат времени. Используй /settings ЧЧ:ММ Регион/Город")
             return
         try:
             ZoneInfo(timezone)
         except (KeyError, ValueError):
-            await message.answer("Invalid timezone. Example: Europe/Tbilisi")
+            await message.answer("Неверный часовой пояс. Пример: Europe/Tbilisi")
             return
         db.update_reminder_settings(user_id, reminder_time=reminder_time, timezone=timezone)
     elif len(parts) != 1:
-        await message.answer("Usage: /settings or /settings HH:MM Area/City")
+        await message.answer("Использование: /settings или /settings ЧЧ:ММ Регион/Город")
         return
 
     due = db.get_due_count(user_id)
     reminder = db.get_reminder_settings(user_id)
     await message.answer(
-        "Settings:\n"
-        f"Reminder: {'on' if int(reminder['enabled']) else 'off'}\n"
-        f"Time: {reminder['reminder_time']}\n"
-        f"Timezone: {reminder['timezone']}\n"
-        f"Due now: {due}"
+        "Настройки:\n"
+        f"Напоминание: {'включено' if int(reminder['enabled']) else 'выключено'}\n"
+        f"Время: {reminder['reminder_time']}\n"
+        f"Часовой пояс: {reminder['timezone']}\n"
+        f"К повторению сейчас: {due}"
     )
 
 
@@ -55,7 +55,7 @@ async def reminder_on(message: Message, db: Database, default_timezone: str) -> 
         return
     user_id = db.ensure_user(message.from_user.id, default_timezone)
     db.update_reminder_settings(user_id, enabled=True)
-    await message.answer("Daily reminders are enabled.")
+    await message.answer("Ежедневные напоминания включены.")
 
 
 @router.message(Command("reminder_off"))
@@ -64,4 +64,4 @@ async def reminder_off(message: Message, db: Database, default_timezone: str) ->
         return
     user_id = db.ensure_user(message.from_user.id, default_timezone)
     db.update_reminder_settings(user_id, enabled=False)
-    await message.answer("Daily reminders are disabled.")
+    await message.answer("Ежедневные напоминания выключены.")

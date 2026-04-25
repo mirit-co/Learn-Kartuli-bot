@@ -10,6 +10,7 @@ from aiogram.types import BotCommand, MenuButtonCommands
 
 from .config import load_settings
 from .db import Database
+from .handlers.add import router as add_router
 from .handlers.learn import router as learn_router
 from .handlers.skill import router as skill_router
 from .handlers.settings import router as settings_router
@@ -40,6 +41,7 @@ async def main() -> None:
     dp["default_timezone"] = settings.default_timezone
 
     dp.include_router(start_router)
+    dp.include_router(add_router)
     dp.include_router(learn_router)
     dp.include_router(skill_router)
     dp.include_router(settings_router)
@@ -47,6 +49,7 @@ async def main() -> None:
 
     await bot.set_my_commands([
         BotCommand(command="learn", description="Учить слова"),
+        BotCommand(command="add", description="Добавить своё слово/фразу"),
         BotCommand(command="stats", description="Мой прогресс"),
         BotCommand(command="settings", description="Настройки напоминаний"),
         BotCommand(command="reminder_on", description="Включить напоминания"),

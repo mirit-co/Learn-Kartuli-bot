@@ -10,11 +10,11 @@ BOX_INTERVALS_DAYS = {
 }
 
 BOX_LABELS = {
-    1: "daily",
-    2: "every 2 days",
-    3: "weekly",
-    4: "every 2 weeks",
-    5: "monthly",
+    1: "каждый день",
+    2: "раз в 2 дня",
+    3: "раз в неделю",
+    4: "раз в 2 недели",
+    5: "раз в месяц",
 }
 
 

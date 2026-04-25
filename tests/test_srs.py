@@ -1,10 +1,10 @@
 from datetime import date
 import unittest
 
-from kartuli_bot.leitner import next_box_after_review, next_review_date_for_box
+from kartuli_bot.srs import next_box_after_review, next_review_date_for_box
 
 
-class LeitnerTests(unittest.TestCase):
+class SrsTests(unittest.TestCase):
     def test_correct_answer_moves_to_next_box(self) -> None:
         self.assertEqual(next_box_after_review(1, True), 2)
         self.assertEqual(next_box_after_review(4, True), 5)
