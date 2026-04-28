@@ -7,7 +7,7 @@ operator-level summary aligned with the current code.
 ## Current Features
 
 - `/start` onboarding and user creation
-- `/learn` strict due-only session (no manual session size)
+- `/learn` due-only session with a daily cap (10 / 15 / 20) chosen each run via inline buttons
 - `/add` add your own lexical unit as `ka — ru` or `ru — ka`
 - `/today` dashboard with day stats
 - `/stats` SRS progress (today + box distribution + Box 5 stable)
@@ -16,8 +16,8 @@ operator-level summary aligned with the current code.
 - `/skill` and `/skill <skill_name> <version>` for skill versions
 - SRS boxes with intervals: 1, 2, 7, 14, 30 days
 - Binary typed-answer evaluation (`correct` / `wrong`) with deterministic normalization and 1-char Levenshtein tolerance for targets ≥ 4 chars
-- In-session buttons: `Показать пример` (only before the answer) and `Не знаю` (= `wrong`)
-- User-added pair is split into two cards (`KA→RU` tomorrow, `RU→KA` day after tomorrow)
+- In-session button: `Не знаю` (= `wrong`); transliteration shows passively under the prompt
+- User-added pair is split into two cards (KA→RU tomorrow, RU→KA day after tomorrow)
 - Duplicate protection for user-added cards
 - SQLite persistence
 - A1 seed deck with alphabet + practical topics
@@ -25,22 +25,26 @@ operator-level summary aligned with the current code.
 ## How the SRS Works
 
 Strictly the rules from `task.md` §2–§5. No "almost correct", no same-session relearn,
-no per-day new-card limits, no hint ladder.
+no hint ladder.
 
 - **Boxes & intervals**: `1d → 2d → 7d → 14d → 30d`. Box 5 stays at 30 days.
 - **Outcomes are binary**: `correct` promotes one box (5 stays 5); `wrong` (or `Не знаю`)
   drops the card straight to Box 1 with `next_review_date = today + 1`, regardless of
   the previous box.
-- **Daily session = due queue only**: every card with `next_review_date <= today`,
-  ordered by `next_review_date ASC, current_box ASC, created_at ASC`. A card is shown
-  at most once per session; if you miss it, it appears tomorrow.
+- **Daily session = capped slice of the due queue**: every card with
+  `next_review_date <= today`, ordered by `next_review_date ASC, current_box ASC,
+  created_at ASC`, then the user picks `N ∈ {10, 15, 20}` at the start of `/learn`
+  and the session runs over the first `min(N, total_due)` cards. The rest stay due
+  for the next run. A card is shown at most once per session; if you miss it, it
+  appears tomorrow.
 - **Skipped days don't burn cards** — due cards just accumulate.
-- **One lexical unit → two independent cards**: `KA→RU` (recognition) and `RU→KA`
+- **One lexical unit → two independent cards**: KA→RU (recognition) and RU→KA
   (production). Each has its own box and review date. Currently full pairing applies
-  to `/add` cards; the curated A1 seed is `KA→RU` only (RU→KA seed pairing is in roadmap).
-- **Hints don't change grading**: `transliteration`, `example_ka`, `example_ru` are
-  available *before* the answer via the `Показать пример` button and never affect the
-  promotion/demotion logic.
+  to `/add` cards; the curated A1 seed is KA→RU only (RU→KA seed pairing is in roadmap).
+- **Hints don't change grading**: `transliteration` is shown passively under the
+  prompt before the answer. `example_ka` / `example_ru` are stored on cards but not
+  shown in the UI yet — the in-session hint button was removed because the curated
+  deck has no examples filled in. It will return when the seed is enriched.
 
 ## Storage Layout (mechanics-relevant tables)
 

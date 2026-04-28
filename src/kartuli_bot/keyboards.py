@@ -1,5 +1,9 @@
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
+
+SESSION_SIZE_OPTIONS: tuple[int, ...] = (10, 15, 20)
+
+
 def onboarding_keyboard() -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(
         inline_keyboard=[
@@ -12,9 +16,17 @@ def onboarding_keyboard() -> InlineKeyboardMarkup:
 def review_keyboard(card_id: int) -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(
         inline_keyboard=[
+            [InlineKeyboardButton(text="Не знаю", callback_data=f"skip:{card_id}")]
+        ]
+    )
+
+
+def session_size_keyboard() -> InlineKeyboardMarkup:
+    return InlineKeyboardMarkup(
+        inline_keyboard=[
             [
-                InlineKeyboardButton(text="Показать пример", callback_data=f"hint:{card_id}"),
-                InlineKeyboardButton(text="Не знаю", callback_data=f"skip:{card_id}"),
+                InlineKeyboardButton(text=str(n), callback_data=f"size:{n}")
+                for n in SESSION_SIZE_OPTIONS
             ]
         ]
     )

@@ -51,43 +51,69 @@ def _confirm_keyboard() -> InlineKeyboardMarkup:
     )
 
 
+_ADD_EXAMPLES = (
+    "რამდენი ღირს? — сколько стоит?",
+    "мясо — ხორცი",
+)
+
+
+def _format_add_prompt() -> str:
+    examples = "\n".join(f"• `{ex}`" for ex in _ADD_EXAMPLES)
+    return (
+        "Пришли пару одной строкой: грузинская и русская сторона через тире.\n\n"
+        "Примеры:\n"
+        f"{examples}"
+    )
+
+
+def _format_add_format_error() -> str:
+    examples = "\n".join(f"• `{ex}`" for ex in _ADD_EXAMPLES)
+    return (
+        "Формат не распознан. Нужно две стороны через тире — грузинская и русская.\n\n"
+        "Примеры:\n"
+        f"{examples}"
+    )
+
+
+def _format_add_preview(ka_text: str, ru_text: str) -> str:
+    return (
+        "Проверь карточку перед сохранением:\n\n"
+        f"KA: {html_escape(ka_text)}\n"
+        f"RU: {html_escape(ru_text)}\n\n"
+        "Создам две карточки в Box 1:\n"
+        "- грузинский → русский: появится завтра\n"
+        "- русский → грузинский: появится послезавтра"
+    )
+
+
 @router.message(Command("add"))
 async def add_card(message: Message, db: Database, default_timezone: str, state: FSMContext) -> None:
     if not message.from_user:
         return
+    await state.clear()
     user_id = db.ensure_user(message.from_user.id, default_timezone)
     db.ensure_user_cards(user_id)
 
     parts = (message.text or "").split(maxsplit=1)
     if len(parts) == 1:
         await state.set_state(AddCardFlow.waiting_for_pair)
-        await message.answer(
-            "Пришли фразу в формате `ka — ru` или `ru — ka`.\n"
-            "Пример: `რამდენი ღირს? — сколько стоит?`"
-        )
+        await message.answer(_format_add_prompt())
         return
 
     pair = _parse_pair(parts[1])
     if not pair:
-        await message.answer(
-            "Не смогла распознать пару. Используй грузинский и русский текст через тире: `ka — ru`."
-        )
+        await message.answer(_format_add_format_error())
         return
     ka_text, ru_text = pair
     await state.set_state(AddCardFlow.waiting_for_confirm)
     await state.update_data(add_ka=ka_text, add_ru=ru_text)
     await message.answer(
-        "Проверь карточку перед сохранением:\n\n"
-        f"KA: {html_escape(ka_text)}\n"
-        f"RU: {html_escape(ru_text)}\n\n"
-        "Создам две карточки в Box 1:\n"
-        "- KA→RU на завтра\n"
-        "- RU→KA на послезавтра",
+        _format_add_preview(ka_text, ru_text),
         reply_markup=_confirm_keyboard(),
     )
 
 
-@router.message(AddCardFlow.waiting_for_pair)
+@router.message(AddCardFlow.waiting_for_pair, F.text & ~F.text.startswith("/"))
 async def add_card_waiting_pair(
     message: Message, db: Database, default_timezone: str, state: FSMContext
 ) -> None:
@@ -96,20 +122,13 @@ async def add_card_waiting_pair(
     db.ensure_user(message.from_user.id, default_timezone)
     pair = _parse_pair(message.text)
     if not pair:
-        await message.answer(
-            "Формат не распознан. Попробуй так: `ხორცი — мясо` или `мясо — ხორცი`."
-        )
+        await message.answer(_format_add_format_error())
         return
     ka_text, ru_text = pair
     await state.set_state(AddCardFlow.waiting_for_confirm)
     await state.update_data(add_ka=ka_text, add_ru=ru_text)
     await message.answer(
-        "Проверь карточку перед сохранением:\n\n"
-        f"KA: {html_escape(ka_text)}\n"
-        f"RU: {html_escape(ru_text)}\n\n"
-        "Создам две карточки в Box 1:\n"
-        "- KA→RU на завтра\n"
-        "- RU→KA на послезавтра",
+        _format_add_preview(ka_text, ru_text),
         reply_markup=_confirm_keyboard(),
     )
 
@@ -162,6 +181,6 @@ async def add_card_confirm(
     await callback.answer("Сохранено")
     await callback.message.answer(
         "Готово. Добавила 2 карточки:\n"
-        "- KA→RU (появится завтра)\n"
-        "- RU→KA (появится послезавтра)"
+        "- грузинский → русский (появится завтра)\n"
+        "- русский → грузинский (появится послезавтра)"
     )

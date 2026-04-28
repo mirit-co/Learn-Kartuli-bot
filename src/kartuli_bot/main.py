@@ -48,12 +48,9 @@ async def main() -> None:
     dp.include_router(stats_router)
 
     await bot.set_my_commands([
+        BotCommand(command="start", description="Начать / о боте"),
         BotCommand(command="learn", description="Учить слова"),
         BotCommand(command="add", description="Добавить своё слово/фразу"),
-        BotCommand(command="stats", description="Мой прогресс"),
-        BotCommand(command="settings", description="Настройки напоминаний"),
-        BotCommand(command="reminder_on", description="Включить напоминания"),
-        BotCommand(command="reminder_off", description="Выключить напоминания"),
     ])
     await bot.set_chat_menu_button(menu_button=MenuButtonCommands())
 

@@ -11,7 +11,7 @@ from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import CallbackQuery, Message
 
 from ..db import Database
-from ..keyboards import review_keyboard
+from ..keyboards import SESSION_SIZE_OPTIONS, review_keyboard, session_size_keyboard
 from ..srs import BOX_LABELS
 
 logger = logging.getLogger(__name__)
@@ -97,14 +97,16 @@ def _format_due_overview(due_per_box: dict[int, int]) -> str:
     total_due = sum(due_per_box.values())
     lines = ["📋 Карточки на сегодня\n"]
     if total_due > 0:
-        lines.append(f"К повторению: {total_due}")
+        lines.append(f"К изучению: {total_due}")
         for box in sorted(due_per_box):
             count = due_per_box[box]
             if count <= 0:
                 continue
             label = BOX_LABELS.get(box, f"коробка {box}")
             lines.append(f"  Коробка {box} ({label}): {count}")
-    lines.append("\nНачинаю сессию — только то, что пора повторить.")
+    lines.append(
+        "\nСколько карточек хочешь сегодня? Возьми порцию — остальное останется на завтра."
+    )
     return "\n".join(lines)
 
 
@@ -130,11 +132,9 @@ async def _send_next_session_card(
 
     front = html_escape(card["front_side"])
     translit = html_escape(card["transliteration"] or "")
-    direction_raw = card["direction"] or "ka_ru"
-    direction_label = {"ka_ru": "KA→RU", "ru_ka": "RU→KA"}.get(direction_raw, direction_raw)
     box = card["current_box"]
     total = len(card_ids)
-    text = f"[{index + 1}/{total}] Коробка {box} · {html_escape(direction_label)}\n\n{front}"
+    text = f"[{index + 1}/{total}] Коробка {box}\n\n{front}"
     if translit:
         text += f"\n({translit})"
     text += "\n\nНапиши ответ:"
@@ -148,6 +148,7 @@ async def _send_next_session_card(
 async def learn(message: Message, db: Database, default_timezone: str, state: FSMContext) -> None:
     if not message.from_user:
         return
+    await state.clear()
     user_id = db.ensure_user(message.from_user.id, default_timezone)
     db.ensure_user_cards(user_id)
     due_per_box = db.get_due_counts_per_box(user_id)
@@ -159,18 +160,42 @@ async def learn(message: Message, db: Database, default_timezone: str, state: FS
         )
         return
 
-    text = _format_due_overview(due_per_box)
-    await message.answer(text)
-    card_ids = db.get_due_card_ids(user_id)
+    await message.answer(
+        _format_due_overview(due_per_box),
+        reply_markup=session_size_keyboard(),
+    )
+
+
+@router.callback_query(F.data.startswith("size:"))
+async def start_sized_session(
+    callback: CallbackQuery, db: Database, default_timezone: str, state: FSMContext
+) -> None:
+    if not callback.from_user or not callback.message or not callback.data:
+        return
+    try:
+        size = int(callback.data.split(":")[1])
+    except (ValueError, IndexError):
+        await callback.answer()
+        return
+    if size not in SESSION_SIZE_OPTIONS:
+        await callback.answer()
+        return
+
+    await callback.message.edit_reply_markup(reply_markup=None)
+    await callback.answer()
+
+    user_id = db.ensure_user(callback.from_user.id, default_timezone)
+    db.ensure_user_cards(user_id)
+    card_ids = db.get_session_card_ids_limited(user_id, size)
     if not card_ids:
-        await message.answer("Карточек пока нет. Запусти /learn ещё раз.")
+        await callback.message.answer("Карточек пока нет. Запусти /learn ещё раз.")
         await state.clear()
         return
 
     total = len(card_ids)
-    await message.answer(f"Поехали — {total} карточек в сессии")
+    await callback.message.answer(f"Поехали — {total} карточек в сессии")
     await state.update_data(session_card_ids=card_ids, session_index=0)
-    await _send_next_session_card(message, db, user_id, state)
+    await _send_next_session_card(callback.message, db, user_id, state)
 
 
 @router.message(Command("today"))
@@ -181,11 +206,11 @@ async def today(message: Message, db: Database, default_timezone: str) -> None:
     db.ensure_user_cards(user_id)
     due_count = db.get_due_count(user_id)
     await message.answer(
-        f"К повторению на сегодня: {due_count}\n\n{_format_session_summary(db, user_id)}"
+        f"К изучению на сегодня: {due_count}\n\n{_format_session_summary(db, user_id)}"
     )
 
 
-@router.message(ReviewSession.waiting_for_answer)
+@router.message(ReviewSession.waiting_for_answer, F.text & ~F.text.startswith("/"))
 async def check_answer(
     message: Message, db: Database, default_timezone: str, state: FSMContext
 ) -> None:
@@ -245,36 +270,3 @@ async def skip_card(
     await _send_next_session_card(callback.message, db, user_id, state)
 
 
-@router.callback_query(F.data.startswith("hint:"))
-async def show_hint(
-    callback: CallbackQuery, db: Database, default_timezone: str, state: FSMContext
-) -> None:
-    if not callback.from_user or not callback.message or not callback.data:
-        return
-    try:
-        card_id = int(callback.data.split(":")[1])
-    except (ValueError, IndexError):
-        await callback.answer()
-        return
-    user_id = db.ensure_user(callback.from_user.id, default_timezone)
-    data = await state.get_data()
-    active_card_id = data.get("card_id")
-    if active_card_id != card_id:
-        await callback.answer("Эта карточка уже не активна.", show_alert=False)
-        return
-    card = db.get_card_for_review(user_id, card_id)
-    if not card:
-        await callback.answer("Карточка недоступна.", show_alert=False)
-        return
-    example_ka = str(card["example_ka"] or "").strip()
-    example_ru = str(card["example_ru"] or "").strip()
-    if not example_ka and not example_ru:
-        await callback.answer("Пример пока не задан.", show_alert=False)
-        return
-    lines = ["Пример:"]
-    if example_ka:
-        lines.append(f"KA: {html_escape(example_ka)}")
-    if example_ru:
-        lines.append(f"RU: {html_escape(example_ru)}")
-    await callback.message.answer("\n".join(lines))
-    await callback.answer()
