@@ -164,7 +164,11 @@ class Database:
                 FROM user_cards uc
                 JOIN cards c ON c.id = uc.card_id
                 WHERE uc.user_id = ? AND uc.next_review_date <= ?
-                ORDER BY uc.next_review_date ASC, uc.current_box ASC
+                ORDER BY
+                    uc.next_review_date ASC,
+                    CASE WHEN uc.last_reviewed_at IS NULL THEN 1 ELSE 0 END ASC,
+                    uc.current_box ASC,
+                    c.created_at ASC
                 LIMIT 1
                 """,
                 (user_id, today),
@@ -186,7 +190,14 @@ class Database:
             return {int(r["current_box"]): int(r["cnt"]) for r in rows}
 
     def get_session_card_ids_limited(self, user_id: int, limit: int) -> list[int]:
-        """Build a due-only session queue (strict SRS)."""
+        """Build a due-only session queue (strict SRS).
+
+        Sort order:
+          1. next_review_date ASC   — oldest overdue first
+          2. last_reviewed_at IS NULL ASC — reviewed-at-least-once before brand-new
+          3. current_box ASC        — lower boxes first within same date
+          4. created_at ASC         — stable tie-break
+        """
         today = date.today().isoformat()
         with self.connect() as conn:
             rows = conn.execute(
@@ -195,7 +206,11 @@ class Database:
                 FROM user_cards uc
                 JOIN cards c ON c.id = uc.card_id
                 WHERE uc.user_id = ? AND uc.next_review_date <= ?
-                ORDER BY uc.next_review_date ASC, uc.current_box ASC, c.created_at ASC
+                ORDER BY
+                    uc.next_review_date ASC,
+                    CASE WHEN uc.last_reviewed_at IS NULL THEN 1 ELSE 0 END ASC,
+                    uc.current_box ASC,
+                    c.created_at ASC
                 LIMIT ?
                 """,
                 (user_id, today, limit),
@@ -211,7 +226,11 @@ class Database:
                 FROM user_cards uc
                 JOIN cards c ON c.id = uc.card_id
                 WHERE uc.user_id = ? AND uc.next_review_date <= ?
-                ORDER BY uc.next_review_date ASC, uc.current_box ASC, c.created_at ASC
+                ORDER BY
+                    uc.next_review_date ASC,
+                    CASE WHEN uc.last_reviewed_at IS NULL THEN 1 ELSE 0 END ASC,
+                    uc.current_box ASC,
+                    c.created_at ASC
                 """,
                 (user_id, today),
             ).fetchall()
