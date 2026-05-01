@@ -157,7 +157,7 @@ class Database:
             return user_id
 
     def ensure_user_cards(self, user_id: int) -> None:
-        tomorrow = next_review_date_for_box(1).isoformat()
+        today = date.today().isoformat()
         with self.connect() as conn:
             conn.execute(
                 """
@@ -166,7 +166,7 @@ class Database:
                 FROM cards c
                 WHERE c.owner_user_id IS NULL OR c.owner_user_id = ?
                 """,
-                (user_id, tomorrow, user_id),
+                (user_id, today, user_id),
             )
             conn.commit()
 
