@@ -3,7 +3,6 @@ WORKDIR /app
 COPY pyproject.toml .
 COPY src/ src/
 COPY migrations/ migrations/
-COPY skills/ skills/
 COPY data/ data/
 RUN pip install --no-cache-dir -e . && mkdir -p /app/storage
 CMD ["python3", "-m", "kartuli_bot.main"]
