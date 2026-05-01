@@ -218,6 +218,7 @@ class Database:
         Sort order for already-reviewed cards:
           1. next_review_date ASC   — oldest overdue first
           2. current_box ASC        — lower boxes first within same date
+          3. difficulty ASC         — easier cards first within same date+box
 
         Sort order for brand-new cards (never reviewed):
           1. difficulty ASC         — easier cards introduced before harder ones
@@ -237,7 +238,7 @@ class Database:
                     CASE WHEN uc.last_reviewed_at IS NULL THEN 1 ELSE 0 END ASC,
                     CASE WHEN uc.last_reviewed_at IS NOT NULL THEN uc.next_review_date END ASC,
                     CASE WHEN uc.last_reviewed_at IS NOT NULL THEN uc.current_box END ASC,
-                    CASE WHEN uc.last_reviewed_at IS NULL THEN c.difficulty END ASC,
+                    c.difficulty ASC,
                     CASE WHEN uc.last_reviewed_at IS NULL THEN RANDOM() END
                 LIMIT ?
                 """,
