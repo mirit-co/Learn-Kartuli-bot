@@ -676,3 +676,43 @@ class Database:
                 (skill_version, user_id, skill_name),
             )
             conn.commit()
+
+    def get_admin_stats(self) -> dict:
+        with self.connect() as conn:
+            row = conn.execute(
+                """
+                SELECT
+                  (SELECT COUNT(*) FROM users) AS total_users,
+                  (SELECT COUNT(*) FROM users
+                   WHERE DATE(created_at) = DATE('now')) AS new_today,
+                  (SELECT COUNT(*) FROM users
+                   WHERE DATE(created_at) = DATE('now', '-1 day')) AS new_yesterday,
+                  (SELECT COUNT(DISTINCT user_id) FROM review_events
+                   WHERE DATE(reviewed_at) = DATE('now')) AS dau_today,
+                  (SELECT COUNT(DISTINCT user_id) FROM review_events
+                   WHERE DATE(reviewed_at) = DATE('now', '-1 day')) AS dau_yesterday,
+                  (SELECT COUNT(*) FROM review_events
+                   WHERE DATE(reviewed_at) = DATE('now')) AS reviews_today,
+                  (SELECT COUNT(*) FROM review_events
+                   WHERE DATE(reviewed_at) = DATE('now', '-1 day')) AS reviews_yesterday
+                """
+            ).fetchone()
+            daily_rows = conn.execute(
+                """
+                SELECT DATE(created_at) AS day, COUNT(*) AS cnt
+                FROM users
+                WHERE created_at >= DATE('now', '-6 day')
+                GROUP BY day
+                ORDER BY day DESC
+                """
+            ).fetchall()
+        return {
+            "total_users": int(row["total_users"]),
+            "new_today": int(row["new_today"]),
+            "new_yesterday": int(row["new_yesterday"]),
+            "dau_today": int(row["dau_today"]),
+            "dau_yesterday": int(row["dau_yesterday"]),
+            "reviews_today": int(row["reviews_today"]),
+            "reviews_yesterday": int(row["reviews_yesterday"]),
+            "new_by_day": [(r["day"], int(r["cnt"])) for r in daily_rows],
+        }

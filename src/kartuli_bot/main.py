@@ -11,6 +11,7 @@ from aiogram.types import BotCommand, MenuButtonCommands
 from .config import load_settings
 from .db import Database
 from .handlers.add import router as add_router
+from .handlers.admin import router as admin_router
 from .handlers.learn import router as learn_router
 from .handlers.skill import router as skill_router
 from .handlers.settings import router as settings_router
@@ -39,7 +40,9 @@ async def main() -> None:
 
     dp["db"] = db
     dp["default_timezone"] = settings.default_timezone
+    dp["admin_telegram_id"] = settings.admin_telegram_id
 
+    dp.include_router(admin_router)
     dp.include_router(start_router)
     dp.include_router(add_router)
     dp.include_router(learn_router)
