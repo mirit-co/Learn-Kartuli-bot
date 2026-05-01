@@ -87,3 +87,95 @@ no hint ladder.
 - `src/kartuli_bot` - bot app and logic
 - `migrations` - SQL schema
 - `data/decks` - deck seed files
+
+---
+
+## Deployment (DigitalOcean + GitHub Actions)
+
+Secrets are stored in **GitHub Secrets only** — no `.env` on the server.
+Local development uses a `.env` file (gitignored).
+
+### First-time server setup
+
+**1. Create SSH deploy key** (on your Mac):
+```bash
+ssh-keygen -t ed25519 -C "kartuli-bot-deploy" -f ~/.ssh/kartuli_bot_deploy
+cat ~/.ssh/kartuli_bot_deploy.pub | pbcopy   # copy public key
+```
+
+**2. Create DigitalOcean Droplet**
+- Ubuntu 24.04 LTS, Basic $6/mo (1 vCPU, 1 GB RAM)
+- During creation: Authentication → SSH Keys → New SSH Key → paste the public key
+
+**3. Connect to the server** (on your Mac):
+```bash
+ssh -i ~/.ssh/kartuli_bot_deploy root@<IP>
+```
+First connection will ask `Are you sure you want to continue connecting (yes/no)?` — type `yes`.
+
+**4. Install Docker** (on the server):
+```bash
+apt update && apt upgrade -y
+```
+After upgrade you may see a message about a new kernel — reboot to apply it:
+```bash
+reboot
+```
+Reconnect after ~30 seconds, then install Docker:
+```bash
+ssh -i ~/.ssh/kartuli_bot_deploy root@<IP>
+apt install -y docker.io docker-compose-v2 git
+systemctl enable --now docker
+```
+Verify:
+```bash
+docker --version
+docker compose version
+```
+
+**5. Add a GitHub SSH key to the server** (so git can clone the private repo):
+```bash
+ssh-keygen -t ed25519 -C "digitalocean-kartuli" -f ~/.ssh/id_ed25519
+cat ~/.ssh/id_ed25519.pub
+```
+Copy the output, then add it in GitHub:
+**github.com → Settings → SSH and GPG keys → New SSH key** → paste → Save.
+
+**6. Clone the repository** (on the server):
+```bash
+git clone git@github.com:mirit-co/Learn-Kartuli-bot.git ~/kartuli-bot
+cd ~/kartuli-bot && mkdir -p storage
+```
+
+**7. First manual run** (before CI/CD is wired up):
+```bash
+BOT_TOKEN=<token> \
+DB_PATH=/app/storage/kartuli.db \
+DEFAULT_TIMEZONE=Europe/Tbilisi \
+docker-compose up -d --build
+```
+
+Verify: `docker compose logs -f` — should show polling started. Test with `/start` in Telegram.
+Exit logs with `Ctrl+C`, disconnect from server with `exit`.
+
+### GitHub Secrets
+
+Add in **Settings → Secrets and variables → Actions**:
+
+| Secret | Value |
+|--------|-------|
+| `SSH_HOST` | Droplet IP |
+| `SSH_USERNAME` | `root` |
+| `SSH_PRIVATE_KEY` | contents of `~/.ssh/kartuli_bot_deploy` (private key, on your Mac) |
+| `BOT_TOKEN` | Telegram bot token |
+| `DB_PATH` | `/app/storage/kartuli.db` |
+| `DEFAULT_TIMEZONE` | `Europe/Tbilisi` |
+
+Copy private key to clipboard (on your Mac): `cat ~/.ssh/kartuli_bot_deploy | pbcopy`
+
+### After setup
+
+Every push/merge to `main`:
+1. GitHub Actions runs `make test`
+2. On success: SSH into droplet → `git pull` → `docker-compose up -d --build`
+3. Secrets are injected as env vars — no `.env` file needed on server
