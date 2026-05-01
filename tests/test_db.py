@@ -24,10 +24,11 @@ class DatabaseTests(unittest.TestCase):
         self.tmp.cleanup()
 
     def test_new_cards_available_for_new_user(self) -> None:
-        self.assertEqual(self.db.get_due_count(self.user_id), 0)
-        self.assertEqual(self.db.get_new_card_count(self.user_id), 0)
+        total = self.db.count_base_deck_cards()
+        self.assertGreater(total, 0)
+        self.assertEqual(self.db.get_due_count(self.user_id), total)
         card_ids = self.db.get_session_card_ids_limited(self.user_id, 10)
-        self.assertEqual(len(card_ids), 0)
+        self.assertEqual(len(card_ids), min(10, total))
 
     def test_due_queue_orders_by_due_then_box(self) -> None:
         with self.db.connect() as conn:
@@ -36,6 +37,11 @@ class DatabaseTests(unittest.TestCase):
                 (self.user_id,),
             ).fetchall()
             card_ids = [int(r["card_id"]) for r in rows]
+            # Push all cards to the future so only the 3 test cards are due.
+            conn.execute(
+                "UPDATE user_cards SET next_review_date = date('now', '+10 day') WHERE user_id = ?",
+                (self.user_id,),
+            )
             conn.execute(
                 "UPDATE user_cards SET next_review_date = date('now'), current_box = 3 WHERE user_id = ? AND card_id = ?",
                 (self.user_id, card_ids[0]),
