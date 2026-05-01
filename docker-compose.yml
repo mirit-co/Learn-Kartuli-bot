@@ -2,9 +2,12 @@ services:
   bot:
     build: .
     restart: unless-stopped
+    env_file:
+      - path: .env
+        required: false
     environment:
-      - BOT_TOKEN=${BOT_TOKEN}
-      - DB_PATH=${DB_PATH}
-      - DEFAULT_TIMEZONE=${DEFAULT_TIMEZONE}
+      - BOT_TOKEN=${BOT_TOKEN:-}
+      - DB_PATH=${DB_PATH:-/app/storage/kartuli.db}
+      - DEFAULT_TIMEZONE=${DEFAULT_TIMEZONE:-Europe/Tbilisi}
     volumes:
       - ./storage:/app/storage
