@@ -26,15 +26,10 @@ jobs:
     steps:
       - name: Deploy to DigitalOcean
         uses: appleboy/ssh-action@v1.0.3
-        env:
-          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-          DB_PATH: ${{ secrets.DB_PATH }}
-          DEFAULT_TIMEZONE: ${{ secrets.DEFAULT_TIMEZONE }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          envs: BOT_TOKEN,DB_PATH,DEFAULT_TIMEZONE
           script: |
             cd ~/kartuli-bot
             git pull origin main
