@@ -24,6 +24,10 @@ def validate_deck(deck: list[dict]) -> list[str]:
             errors.append(f"Card #{index} has empty required values.")
         if len(translit) == 0:
             errors.append(f"Card #{index} has empty transliteration.")
+        if "difficulty" in card:
+            diff = card["difficulty"]
+            if not isinstance(diff, int) or diff < 1 or diff > 5:
+                errors.append(f"Card #{index} has invalid difficulty: {diff!r} (must be int 1–5).")
         front_key = front.lower()
         if front_key in seen_front:
             errors.append(f"Duplicate front_side found: {front}")

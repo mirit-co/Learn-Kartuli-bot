@@ -55,28 +55,51 @@ class Database:
         Dedup key: (front_side, back_side, topic) within the curated/base deck
         (owner_user_id IS NULL). User-added cards are not affected.
         Safe to call on every startup so the welcome card count tracks the seed.
+        Also back-fills the difficulty column for cards that predate it.
         """
         data = load_deck(self.deck_path)
         errors = validate_deck(data)
         if errors:
             raise ValueError("Deck validation failed: " + "; ".join(errors[:5]))
+
+        existing_rows = conn.execute(
+            "SELECT front_side, back_side, topic, difficulty FROM cards WHERE owner_user_id IS NULL"
+        ).fetchall()
         existing = {
             (row["front_side"], row["back_side"], row["topic"])
-            for row in conn.execute(
-                "SELECT front_side, back_side, topic FROM cards WHERE owner_user_id IS NULL"
-            ).fetchall()
+            for row in existing_rows
         }
+
+        # Back-fill difficulty=3 placeholders for already-inserted seed cards.
+        existing_difficulty = {
+            (row["front_side"], row["back_side"], row["topic"]): row["difficulty"]
+            for row in existing_rows
+        }
+        for entry in data:
+            key = (entry["front_side"], entry["back_side"], entry["topic"])
+            wanted = entry.get("difficulty", 3)
+            if key in existing_difficulty and existing_difficulty[key] != wanted:
+                conn.execute(
+                    """
+                    UPDATE cards SET difficulty = ?
+                    WHERE front_side = ? AND back_side = ? AND topic = ?
+                      AND owner_user_id IS NULL
+                    """,
+                    (wanted, entry["front_side"], entry["back_side"], entry["topic"]),
+                )
+
         new_entries = [
-            entry
+            {**entry, "difficulty": entry.get("difficulty", 3)}
             for entry in data
             if (entry["front_side"], entry["back_side"], entry["topic"]) not in existing
         ]
         if not new_entries:
+            conn.commit()
             return
         conn.executemany(
             """
-            INSERT INTO cards(front_side, back_side, topic, transliteration)
-            VALUES(:front_side, :back_side, :topic, :transliteration)
+            INSERT INTO cards(front_side, back_side, topic, transliteration, difficulty)
+            VALUES(:front_side, :back_side, :topic, :transliteration, :difficulty)
             """,
             new_entries,
         )
@@ -192,11 +215,15 @@ class Database:
     def get_session_card_ids_limited(self, user_id: int, limit: int) -> list[int]:
         """Build a due-only session queue (strict SRS).
 
-        Sort order:
+        Sort order for already-reviewed cards:
           1. next_review_date ASC   — oldest overdue first
-          2. last_reviewed_at IS NULL ASC — reviewed-at-least-once before brand-new
-          3. current_box ASC        — lower boxes first within same date
-          4. created_at ASC         — stable tie-break
+          2. current_box ASC        — lower boxes first within same date
+
+        Sort order for brand-new cards (never reviewed):
+          1. difficulty ASC         — easier cards introduced before harder ones
+          2. RANDOM()               — mix topics within the same difficulty level
+
+        Brand-new cards are always placed after already-reviewed due cards.
         """
         today = date.today().isoformat()
         with self.connect() as conn:
@@ -207,10 +234,11 @@ class Database:
                 JOIN cards c ON c.id = uc.card_id
                 WHERE uc.user_id = ? AND uc.next_review_date <= ?
                 ORDER BY
-                    uc.next_review_date ASC,
                     CASE WHEN uc.last_reviewed_at IS NULL THEN 1 ELSE 0 END ASC,
-                    uc.current_box ASC,
-                    c.created_at ASC
+                    CASE WHEN uc.last_reviewed_at IS NOT NULL THEN uc.next_review_date END ASC,
+                    CASE WHEN uc.last_reviewed_at IS NOT NULL THEN uc.current_box END ASC,
+                    CASE WHEN uc.last_reviewed_at IS NULL THEN c.difficulty END ASC,
+                    CASE WHEN uc.last_reviewed_at IS NULL THEN RANDOM() END
                 LIMIT ?
                 """,
                 (user_id, today, limit),

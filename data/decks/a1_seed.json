@@ -1,302 +1,2102 @@
 [
-  {"front_side":"ა — ანანასი","back_side":"а (a) — ананас","topic":"alphabet","transliteration":"a — ananasi"},
-  {"front_side":"ბ — ბანანი","back_side":"б (b) — банан","topic":"alphabet","transliteration":"b — banani"},
-  {"front_side":"გ — გამარჯობა","back_side":"г (g) — привет","topic":"alphabet","transliteration":"g — gamarjoba"},
-  {"front_side":"დ — დილა","back_side":"д (d) — утро","topic":"alphabet","transliteration":"d — dila"},
-  {"front_side":"ე — ერთი","back_side":"э/е (e) — один","topic":"alphabet","transliteration":"e — erti"},
-  {"front_side":"ვ — ვაშლი","back_side":"в (v) — яблоко","topic":"alphabet","transliteration":"v — vashli"},
-  {"front_side":"ზ — ზამთარი","back_side":"з (z) — зима","topic":"alphabet","transliteration":"z — zamtari"},
-  {"front_side":"თ — თევზი","back_side":"т (t) — рыба","topic":"alphabet","transliteration":"t — tevzi"},
-  {"front_side":"ი — ისტორია","back_side":"и (i) — история","topic":"alphabet","transliteration":"i — istoria"},
-  {"front_side":"კ — კარგი","back_side":"к (k) — хорошо","topic":"alphabet","transliteration":"k — kargi"},
-  {"front_side":"ლ — ლიმონი","back_side":"л (l) — лимон","topic":"alphabet","transliteration":"l — limoni"},
-  {"front_side":"მ — მადლობა","back_side":"м (m) — спасибо","topic":"alphabet","transliteration":"m — madloba"},
-  {"front_side":"ნ — ნარინჯი","back_side":"н (n) — апельсин","topic":"alphabet","transliteration":"n — narinji"},
-  {"front_side":"ო — ოჯახი","back_side":"о (o) — семья","topic":"alphabet","transliteration":"o — ojakhi"},
-  {"front_side":"პ — პური","back_side":"п (p) — хлеб","topic":"alphabet","transliteration":"p — puri"},
-  {"front_side":"ჟ — ჟურნალი","back_side":"ж (zh) — журнал","topic":"alphabet","transliteration":"zh — zhurnali"},
-  {"front_side":"რ — რძე","back_side":"р (r) — молоко","topic":"alphabet","transliteration":"r — rdze"},
-  {"front_side":"ს — სახლი","back_side":"с (s) — дом","topic":"alphabet","transliteration":"s — sakhli"},
-  {"front_side":"ტ — ტაქსი","back_side":"т (t') — такси","topic":"alphabet","transliteration":"t' — taksi"},
-  {"front_side":"უ — უნივერსიტეტი","back_side":"у (u) — университет","topic":"alphabet","transliteration":"u — universiteti"},
-  {"front_side":"ფ — ფული","back_side":"ф (p) — деньги","topic":"alphabet","transliteration":"p — puli"},
-  {"front_side":"ქ — ქალაქი","back_side":"к (k') — город","topic":"alphabet","transliteration":"k' — kalaki"},
-  {"front_side":"ღ — ღვინო","back_side":"г/гх (gh) — вино","topic":"alphabet","transliteration":"gh — ghvino"},
-  {"front_side":"ყ — ყავა","back_side":"к (q) — кофе","topic":"alphabet","transliteration":"q — qava"},
-  {"front_side":"შ — შაქარი","back_side":"ш (sh) — сахар","topic":"alphabet","transliteration":"sh — shakari"},
-  {"front_side":"ჩ — ჩაი","back_side":"ч (ch) — чай","topic":"alphabet","transliteration":"ch — chai"},
-  {"front_side":"ც — ცხელი","back_side":"ц (ts) — горячий","topic":"alphabet","transliteration":"ts — tskheli"},
-  {"front_side":"ძ — ძველი","back_side":"дз (dz) — старый","topic":"alphabet","transliteration":"dz — dzveli"},
-  {"front_side":"წ — წყალი","back_side":"ц (ts') — вода","topic":"alphabet","transliteration":"ts' — ts'q'ali"},
-  {"front_side":"ჭ — ჭამა","back_side":"ч (ch') — еда/есть","topic":"alphabet","transliteration":"ch' — ch'ama"},
-  {"front_side":"ხ — ხილი","back_side":"х (kh) — фрукты","topic":"alphabet","transliteration":"kh — khili"},
-  {"front_side":"ჯ — ჯარისკაცი","back_side":"дж (j) — солдат","topic":"alphabet","transliteration":"j — jariskatsi"},
-  {"front_side":"ჰ — ჰაერი","back_side":"х/h (h) — воздух","topic":"alphabet","transliteration":"h — haeri"},
-  {"front_side":"გამარჯობა","back_side":"привет","topic":"small_talk","transliteration":"gamarjoba"},
-  {"front_side":"დილა მშვიდობისა","back_side":"доброе утро","topic":"small_talk","transliteration":"dila mshvidobisa"},
-  {"front_side":"საღამო მშვიდობისა","back_side":"добрый вечер","topic":"small_talk","transliteration":"saghamo mshvidobisa"},
-  {"front_side":"ნახვამდის","back_side":"до свидания","topic":"small_talk","transliteration":"nakhvamdis"},
-  {"front_side":"მადლობა","back_side":"спасибо","topic":"small_talk","transliteration":"madloba"},
-  {"front_side":"დიდი მადლობა","back_side":"большое спасибо","topic":"small_talk","transliteration":"didi madloba"},
-  {"front_side":"გთხოვ","back_side":"пожалуйста","topic":"small_talk","transliteration":"gtkhov"},
-  {"front_side":"ბოდიში","back_side":"извините","topic":"small_talk","transliteration":"bodishi"},
-  {"front_side":"კი","back_side":"да","topic":"small_talk","transliteration":"ki"},
-  {"front_side":"არა","back_side":"нет","topic":"small_talk","transliteration":"ara"},
-  {"front_side":"როგორ ხარ?","back_side":"как ты?","topic":"small_talk","transliteration":"rogor khar?"},
-  {"front_side":"კარგად ვარ","back_side":"я хорошо","topic":"small_talk","transliteration":"kargad var"},
-  {"front_side":"მე რუსი ვარ","back_side":"я русская","topic":"small_talk","transliteration":"me rusi var"},
-  {"front_side":"ქართულს ვსწავლობ","back_side":"я учу грузинский","topic":"small_talk","transliteration":"kartuls vstsavlob"},
-  {"front_side":"თქვენ ინგლისურად ლაპარაკობთ?","back_side":"вы говорите по-английски?","topic":"small_talk","transliteration":"tkven inglisurad laparakobt?"},
-  {"front_side":"მე არ მესმის","back_side":"я не понимаю","topic":"small_talk","transliteration":"me ar mesmis"},
-  {"front_side":"ნელა, გთხოვთ","back_side":"медленнее, пожалуйста","topic":"small_talk","transliteration":"nela, gtkhovt"},
-  {"front_side":"სად არის...?","back_side":"где находится...?","topic":"transport","transliteration":"sad aris...?"},
-  {"front_side":"მარჯვნივ","back_side":"направо","topic":"transport","transliteration":"marjvniv"},
-  {"front_side":"მარცხნივ","back_side":"налево","topic":"transport","transliteration":"martskhniv"},
-  {"front_side":"პირდაპირ","back_side":"прямо","topic":"transport","transliteration":"pirdapir"},
-  {"front_side":"გაჩერება","back_side":"остановка","topic":"transport","transliteration":"gachereba"},
-  {"front_side":"ავტობუსი","back_side":"автобус","topic":"transport","transliteration":"avtobusi"},
-  {"front_side":"მეტრო","back_side":"метро","topic":"transport","transliteration":"metro"},
-  {"front_side":"ტაქსი","back_side":"такси","topic":"transport","transliteration":"taksi"},
-  {"front_side":"ბილეთი","back_side":"билет","topic":"transport","transliteration":"bileti"},
-  {"front_side":"ერთი ბილეთი, გთხოვთ","back_side":"один билет, пожалуйста","topic":"transport","transliteration":"erti bileti, gtkhovt"},
-  {"front_side":"რამდენი ღირს ბილეთი?","back_side":"сколько стоит билет?","topic":"transport","transliteration":"ramdeni ghirs bileti?"},
-  {"front_side":"ეს ავტობუსი ცენტრში მიდის?","back_side":"этот автобус идет в центр?","topic":"transport","transliteration":"es avtobusi centrshi midis?"},
-  {"front_side":"რომელი სადგურია შემდეგი?","back_side":"какая следующая станция?","topic":"transport","transliteration":"romeli sadguria shemdegi?"},
-  {"front_side":"მაღაზია","back_side":"магазин","topic":"grocery","transliteration":"maghazia"},
-  {"front_side":"სუპერმარკეტი","back_side":"супермаркет","topic":"grocery","transliteration":"supermarketi"},
-  {"front_side":"პური","back_side":"хлеб","topic":"grocery","transliteration":"puri"},
-  {"front_side":"წყალი","back_side":"вода","topic":"grocery","transliteration":"ts'q'ali"},
-  {"front_side":"რძე","back_side":"молоко","topic":"grocery","transliteration":"rdze"},
-  {"front_side":"ყავა","back_side":"кофе","topic":"grocery","transliteration":"qava"},
-  {"front_side":"ჩაი","back_side":"чай","topic":"grocery","transliteration":"chai"},
-  {"front_side":"შაქარი","back_side":"сахар","topic":"grocery","transliteration":"shakari"},
-  {"front_side":"მარილი","back_side":"соль","topic":"grocery","transliteration":"marili"},
-  {"front_side":"ხილი","back_side":"фрукты","topic":"grocery","transliteration":"khili"},
-  {"front_side":"ბოსტნეული","back_side":"овощи","topic":"grocery","transliteration":"bostneuli"},
-  {"front_side":"ვაშლი","back_side":"яблоко","topic":"grocery","transliteration":"vashli"},
-  {"front_side":"ბანანი","back_side":"банан","topic":"grocery","transliteration":"banani"},
-  {"front_side":"კარტოფილი","back_side":"картофель","topic":"grocery","transliteration":"kartofili"},
-  {"front_side":"ხორცი","back_side":"мясо","topic":"grocery","transliteration":"khortsi"},
-  {"front_side":"თევზი","back_side":"рыба","topic":"grocery","transliteration":"tevzi"},
-  {"front_side":"რამდენი ღირს?","back_side":"сколько стоит?","topic":"market","transliteration":"ramdeni ghirs?"},
-  {"front_side":"ძალიან ძვირია","back_side":"слишком дорого","topic":"market","transliteration":"dzalian dzviria"},
-  {"front_side":"იაფია","back_side":"дешево","topic":"market","transliteration":"iapia"},
-  {"front_side":"შეიძლება ცოტა იაფად?","back_side":"можно немного дешевле?","topic":"market","transliteration":"sheidzleba cota iapad?"},
-  {"front_side":"ბაზარი","back_side":"рынок","topic":"market","transliteration":"bazari"},
-  {"front_side":"რაოდენობა","back_side":"количество","topic":"market","transliteration":"raodenoba"},
-  {"front_side":"კილოგრამი","back_side":"килограмм","topic":"market","transliteration":"kilogrami"},
-  {"front_side":"ნახევარი კილო","back_side":"полкилограмма","topic":"market","transliteration":"nakhevari kilo"},
-  {"front_side":"ჩანთა","back_side":"пакет/сумка","topic":"market","transliteration":"chanta"},
-  {"front_side":"მინდა ეს","back_side":"я хочу это","topic":"market","transliteration":"minda es"},
-  {"front_side":"სად არის სალარო?","back_side":"где касса?","topic":"market","transliteration":"sad aris salaro?"},
-  {"front_side":"ბარათით გადახდა შეიძლება?","back_side":"можно оплатить картой?","topic":"market","transliteration":"baratit gadakhda sheidzleba?"},
-  {"front_side":"ნაღდი ფული","back_side":"наличные","topic":"market","transliteration":"naghdi puli"},
-  {"front_side":"ბარათი","back_side":"карта","topic":"market","transliteration":"barati"},
-  {"front_side":"გამარჯობა, როგორ ხართ?","back_side":"здравствуйте, как вы?","topic":"small_talk","transliteration":"gamarjoba, rogor khart?"},
-  {"front_side":"მე ტურისტი ვარ","back_side":"я туристка","topic":"small_talk","transliteration":"me turisti var"},
-  {"front_side":"თბილისიდან ხარ?","back_side":"ты из Тбилиси?","topic":"small_talk","transliteration":"tbilisidan khar?"},
-  {"front_side":"დღეს ცივა","back_side":"сегодня холодно","topic":"small_talk","transliteration":"dghes civa"},
-  {"front_side":"დღეს ცხელა","back_side":"сегодня жарко","topic":"small_talk","transliteration":"dghes tskhela"},
-  {"front_side":"მე მშია","back_side":"я голодна","topic":"small_talk","transliteration":"me mshia"},
-  {"front_side":"მე მწყურია","back_side":"я хочу пить","topic":"small_talk","transliteration":"me mts'q'uria"},
-  {"front_side":"რესტორანი","back_side":"ресторан","topic":"small_talk","transliteration":"restorani"},
-  {"front_side":"მენიუ, გთხოვთ","back_side":"меню, пожалуйста","topic":"small_talk","transliteration":"meniu, gtkhovt"},
-  {"front_side":"ანგარიში, გთხოვთ","back_side":"счет, пожалуйста","topic":"small_talk","transliteration":"angarishi, gtkhovt"},
-  {"front_side":"დღეს","back_side":"сегодня","topic":"small_talk","transliteration":"dghes"},
-  {"front_side":"ხვალ","back_side":"завтра","topic":"small_talk","transliteration":"khval"},
-  {"front_side":"ახლა","back_side":"сейчас","topic":"small_talk","transliteration":"akhla"},
-  {"front_side":"ერთი","back_side":"один","topic":"numbers","transliteration":"erti"},
-  {"front_side":"ორი","back_side":"два","topic":"numbers","transliteration":"ori"},
-  {"front_side":"სამი","back_side":"три","topic":"numbers","transliteration":"sami"},
-  {"front_side":"ოთხი","back_side":"четыре","topic":"numbers","transliteration":"otkhi"},
-  {"front_side":"ხუთი","back_side":"пять","topic":"numbers","transliteration":"khuti"},
-  {"front_side":"შეიძლება გკითხოთ?","back_side":"можно вас спросить?","topic":"stranger_chat","transliteration":"sheidzleba gkitkhot?"},
-  {"front_side":"თქვენ აქედან ხართ?","back_side":"вы отсюда?","topic":"stranger_chat","transliteration":"tkven akedan khart?"},
-  {"front_side":"საიდან ხართ?","back_side":"откуда вы?","topic":"stranger_chat","transliteration":"saidan khart?"},
-  {"front_side":"რა გქვია?","back_side":"как тебя зовут?","topic":"stranger_chat","transliteration":"ra gkvia?"},
-  {"front_side":"სახელი","back_side":"имя","topic":"stranger_chat","transliteration":"sakheli"},
-  {"front_side":"სასიამოვნოა","back_side":"приятно познакомиться","topic":"stranger_chat","transliteration":"sasiamovnoa"},
-  {"front_side":"რას აკეთებთ?","back_side":"чем занимаетесь?","topic":"stranger_chat","transliteration":"ras aketebt?"},
-  {"front_side":"დიდი ხანია საქართველოში ხართ?","back_side":"вы давно в Грузии?","topic":"stranger_chat","transliteration":"didi khania sakartveloshi khart?"},
-  {"front_side":"მოგწონთ საქართველო?","back_side":"вам нравится Грузия?","topic":"stranger_chat","transliteration":"mogts'ont sakartvelo?"},
-  {"front_side":"ძალიან ლამაზი ქალაქია","back_side":"очень красивый город","topic":"stranger_chat","transliteration":"dzalian lamazi kalakia"},
-  {"front_side":"რამე კარგ ადგილს მირჩევთ?","back_side":"посоветуете хорошее место?","topic":"stranger_chat","transliteration":"rame karg adgils mirchevt?"},
-  {"front_side":"დამეხმარეთ, გთხოვთ","back_side":"помогите, пожалуйста","topic":"stranger_chat","transliteration":"damekhmaret, gtkhovt"},
-  {"front_side":"ქართველი ხართ?","back_side":"вы грузин(ка)?","topic":"stranger_chat","transliteration":"kartveli khart?"},
-  {"front_side":"აქ ცხოვრობთ?","back_side":"вы здесь живёте?","topic":"stranger_chat","transliteration":"ak tskhovrobt?"},
-  {"front_side":"იუსტიციის სახლი","back_side":"Дом юстиции","topic":"public_services","transliteration":"iustitsiis sakhli"},
-  {"front_side":"საგადასახადო სამსახური","back_side":"налоговая служба","topic":"public_services","transliteration":"sagadasakhado samsakhuri"},
-  {"front_side":"ცნობა","back_side":"справка","topic":"public_services","transliteration":"tsnoba"},
-  {"front_side":"დოკუმენტი","back_side":"документ","topic":"public_services","transliteration":"dokumenti"},
-  {"front_side":"პირადობის მოწმობა","back_side":"удостоверение личности","topic":"public_services","transliteration":"piradobis mots'moba"},
-  {"front_side":"პასპორტი","back_side":"паспорт","topic":"public_services","transliteration":"pasporti"},
-  {"front_side":"დაბადების მოწმობა","back_side":"свидетельство о рождении","topic":"public_services","transliteration":"dabadebis mots'moba"},
-  {"front_side":"ქორწინების მოწმობა","back_side":"свидетельство о браке","topic":"public_services","transliteration":"korts'inebis mots'moba"},
-  {"front_side":"მინდა ცნობის აღება","back_side":"я хочу получить справку","topic":"public_services","transliteration":"minda tsnobis agheba"},
-  {"front_side":"განცხადება","back_side":"заявление","topic":"public_services","transliteration":"gantskhadeba"},
-  {"front_side":"რეგისტრაცია","back_side":"регистрация","topic":"public_services","transliteration":"registratsia"},
-  {"front_side":"სად ჩავაბარო დოკუმენტები?","back_side":"где сдать документы?","topic":"public_services","transliteration":"sad chavabaro dokumentebi?"},
-  {"front_side":"რამდენ ხანში იქნება მზად?","back_side":"через сколько будет готово?","topic":"public_services","transliteration":"ramden khanshi ikneba mzad?"},
-  {"front_side":"ასლი","back_side":"копия","topic":"public_services","transliteration":"asli"},
-  {"front_side":"ხელმოწერა","back_side":"подпись","topic":"public_services","transliteration":"khelmots'era"},
-  {"front_side":"რა დოკუმენტებია საჭირო?","back_side":"какие документы нужны?","topic":"public_services","transliteration":"ra dokumentebia sach'iro?"},
-  {"front_side":"რიგის ნომერი","back_side":"номер очереди","topic":"public_services","transliteration":"rigis nomeri"},
-  {"front_side":"საფასური","back_side":"пошлина","topic":"public_services","transliteration":"sapasuri"},
-  {"front_side":"აფთიაქი","back_side":"аптека","topic":"pharmacy","transliteration":"aptiaki"},
-  {"front_side":"წამალი","back_side":"лекарство","topic":"pharmacy","transliteration":"ts'amali"},
-  {"front_side":"რეცეპტი","back_side":"рецепт","topic":"pharmacy","transliteration":"retsepti"},
-  {"front_side":"ტაბლეტი","back_side":"таблетка","topic":"pharmacy","transliteration":"tableti"},
-  {"front_side":"სიროპი","back_side":"сироп","topic":"pharmacy","transliteration":"siropi"},
-  {"front_side":"მალამო","back_side":"мазь","topic":"pharmacy","transliteration":"malamo"},
-  {"front_side":"მაქვს რეცეპტი","back_side":"у меня есть рецепт","topic":"pharmacy","transliteration":"makvs retsepti"},
-  {"front_side":"რეცეპტი საჭიროა?","back_side":"нужен рецепт?","topic":"pharmacy","transliteration":"retsepti sach'iroa?"},
-  {"front_side":"თავი მტკივა","back_side":"у меня болит голова","topic":"pharmacy","transliteration":"tavi mtkiva"},
-  {"front_side":"ცხელება","back_side":"температура","topic":"pharmacy","transliteration":"tskheleba"},
-  {"front_side":"ალერგია","back_side":"аллергия","topic":"pharmacy","transliteration":"alergia"},
-  {"front_side":"გაციება","back_side":"простуда","topic":"pharmacy","transliteration":"gatsieba"},
-  {"front_side":"თავის ტკივილის წამალი გაქვთ?","back_side":"есть лекарство от головной боли?","topic":"pharmacy","transliteration":"tavis tkivilis ts'amali gakvt?"},
-  {"front_side":"რამდენჯერ დღეში მივიღო?","back_side":"сколько раз в день принимать?","topic":"pharmacy","transliteration":"ramdendjer dgheshi mivigho?"},
-  {"front_side":"ფარმაცევტი","back_side":"фармацевт","topic":"pharmacy","transliteration":"parmatsevti"},
-  {"front_side":"როგორ არის ამინდი?","back_side":"какая погода?","topic":"small_talk","transliteration":"rogor aris amindi?"},
-  {"front_side":"დღეს კარგი ამინდია","back_side":"сегодня хорошая погода","topic":"small_talk","transliteration":"dghes kargi amindia"},
-  {"front_side":"ძალიან მიხარია","back_side":"я очень рада","topic":"small_talk","transliteration":"dzalian mikharia"},
-  {"front_side":"მე ცოტა დაღლილი ვარ","back_side":"я немного устала","topic":"small_talk","transliteration":"me cota daghlili var"},
-  {"front_side":"მალე დავბრუნდები","back_side":"я скоро вернусь","topic":"small_talk","transliteration":"male davbrundebi"},
-  {"front_side":"სასიამოვნო დღე გისურვებთ","back_side":"желаю вам хорошего дня","topic":"small_talk","transliteration":"sasiamovno dghe gisurvebt"},
-  {"front_side":"გმადლობთ დახმარებისთვის","back_side":"спасибо за помощь","topic":"small_talk","transliteration":"gmadlobt dakhmarebistvis"},
-  {"front_side":"კარგ მოგზაურობას გისურვებთ","back_side":"желаю хорошей поездки","topic":"small_talk","transliteration":"karg mogzaurobas gisurvebt"},
-  {"front_side":"ისევ შევხვდებით","back_side":"еще увидимся","topic":"small_talk","transliteration":"isev shevkhvdebit"},
-  {"front_side":"ყველაფერი კარგად იქნება","back_side":"все будет хорошо","topic":"small_talk","transliteration":"qvelaperi kargad ikneba"},
-  {"front_side":"შეგიძლია გამიმეორო?","back_side":"можешь повторить?","topic":"small_talk","transliteration":"shegidzlia gamimeoro?"},
-  {"front_side":"ცოტა ხმამაღლა თქვი","back_side":"скажи чуть громче","topic":"small_talk","transliteration":"cota khmamaghla tkvi"},
-  {"front_side":"მე ახლოს ვცხოვრობ","back_side":"я живу рядом","topic":"small_talk","transliteration":"me akhlos vtskhovrob"},
-  {"front_side":"დღეს ბევრი საქმე მაქვს","back_side":"сегодня у меня много дел","topic":"small_talk","transliteration":"dghes bevri sakme makvs"},
-  {"front_side":"მატარებელი","back_side":"поезд","topic":"transport","transliteration":"matarebeli"},
-  {"front_side":"სადგური","back_side":"вокзал/станция","topic":"transport","transliteration":"sadguri"},
-  {"front_side":"აეროპორტი","back_side":"аэропорт","topic":"transport","transliteration":"aeroporti"},
-  {"front_side":"მარშრუტი","back_side":"маршрут","topic":"transport","transliteration":"marshruti"},
-  {"front_side":"საცობი","back_side":"пробка","topic":"transport","transliteration":"satsobi"},
-  {"front_side":"ეს ადგილი თავისუფალია?","back_side":"это место свободно?","topic":"transport","transliteration":"es adgili tavisuphalia?"},
-  {"front_side":"შემდეგი ავტობუსი როდის არის?","back_side":"когда следующий автобус?","topic":"transport","transliteration":"shemdegi avtobusi rodis aris?"},
-  {"front_side":"მეტროს ბარათი სად ვიყიდო?","back_side":"где купить карту метро?","topic":"transport","transliteration":"metros barati sad viqido?"},
-  {"front_side":"ბარათის შევსება მინდა","back_side":"хочу пополнить карту","topic":"transport","transliteration":"baratis shevseba minda"},
-  {"front_side":"რომელი ხაზი მიდის ცენტრში?","back_side":"какая линия идет в центр?","topic":"transport","transliteration":"romeli khazi midis centrshi?"},
-  {"front_side":"გამოსასვლელი სად არის?","back_side":"где выход?","topic":"transport","transliteration":"gamosasvleli sad aris?"},
-  {"front_side":"ფეხით რამდენი წუთია?","back_side":"сколько минут пешком?","topic":"transport","transliteration":"pekhit ramdeni tsutia?"},
-  {"front_side":"მე ვაგვიანებ","back_side":"я опаздываю","topic":"transport","transliteration":"me vagvianeb"},
-  {"front_side":"კარი გააღეთ, გთხოვთ","back_side":"откройте дверь, пожалуйста","topic":"transport","transliteration":"kari gaaghet, gtkhovt"},
-  {"front_side":"კვერცხი","back_side":"яйцо","topic":"grocery","transliteration":"kvertskhi"},
-  {"front_side":"ყველი","back_side":"сыр","topic":"grocery","transliteration":"qveli"},
-  {"front_side":"კარაქი","back_side":"масло","topic":"grocery","transliteration":"karaki"},
-  {"front_side":"იოგურტი","back_side":"йогурт","topic":"grocery","transliteration":"iogurti"},
-  {"front_side":"ბრინჯი","back_side":"рис","topic":"grocery","transliteration":"brinji"},
-  {"front_side":"მაკარონი","back_side":"макароны","topic":"grocery","transliteration":"makaroni"},
-  {"front_side":"ქათამი","back_side":"курица","topic":"grocery","transliteration":"katami"},
-  {"front_side":"პომიდორი","back_side":"помидор","topic":"grocery","transliteration":"pomidori"},
-  {"front_side":"კიტრი","back_side":"огурец","topic":"grocery","transliteration":"kitri"},
-  {"front_side":"ხახვი","back_side":"лук","topic":"grocery","transliteration":"khakhvi"},
-  {"front_side":"ნიორი","back_side":"чеснок","topic":"grocery","transliteration":"niori"},
-  {"front_side":"წვენი","back_side":"сок","topic":"grocery","transliteration":"tsveni"},
-  {"front_side":"მინერალური წყალი","back_side":"минеральная вода","topic":"grocery","transliteration":"mineraluri ts'q'ali"},
-  {"front_side":"ეს ახალია?","back_side":"это свежее?","topic":"grocery","transliteration":"es akhalia?"},
-  {"front_side":"ფასი","back_side":"цена","topic":"market","transliteration":"pasi"},
-  {"front_side":"ფასდაკლება","back_side":"скидка","topic":"market","transliteration":"pasdakleba"},
-  {"front_side":"სასწორი","back_side":"весы","topic":"market","transliteration":"sastsori"},
-  {"front_side":"შეკვრა","back_side":"упаковка","topic":"market","transliteration":"shekvra"},
-  {"front_side":"მეტი არ მაქვს","back_side":"у меня больше нет","topic":"market","transliteration":"meti ar makvs"},
-  {"front_side":"ძალიან ძვირია ჩემთვის","back_side":"для меня слишком дорого","topic":"market","transliteration":"dzalian dzviria chemtvis"},
-  {"front_side":"მომეცით ერთი კილო","back_side":"дайте один килограмм","topic":"market","transliteration":"mometsit erti kilo"},
-  {"front_side":"პატარა პარკი მინდა","back_side":"мне нужен маленький пакет","topic":"market","transliteration":"patara parki minda"},
-  {"front_side":"ხურდა გაქვთ?","back_side":"у вас есть сдача?","topic":"market","transliteration":"khurda gakvt?"},
-  {"front_side":"რიგში ვდგავარ","back_side":"я стою в очереди","topic":"market","transliteration":"rigshi vdgavar"},
-  {"front_side":"ეს უფრო ახალია?","back_side":"это свежее?","topic":"market","transliteration":"es upro akhalia?"},
-  {"front_side":"შეარჩიეთ კარგი","back_side":"выберите хороший","topic":"market","transliteration":"shearchiet kargi"},
-  {"front_side":"კიდევ რას მირჩევთ?","back_side":"что еще посоветуете?","topic":"market","transliteration":"kidev ras mirchevt?"},
-  {"front_side":"საერთო ჯამი რამდენია?","back_side":"какая итоговая сумма?","topic":"market","transliteration":"saerto jami ramdenia?"},
-  {"front_side":"ექვსი","back_side":"шесть","topic":"numbers","transliteration":"ekvsi"},
-  {"front_side":"შვიდი","back_side":"семь","topic":"numbers","transliteration":"shvidi"},
-  {"front_side":"რვა","back_side":"восемь","topic":"numbers","transliteration":"rva"},
-  {"front_side":"ცხრა","back_side":"девять","topic":"numbers","transliteration":"tskhra"},
-  {"front_side":"ათი","back_side":"десять","topic":"numbers","transliteration":"ati"},
-  {"front_side":"თერთმეტი","back_side":"одиннадцать","topic":"numbers","transliteration":"tertmeti"},
-  {"front_side":"თორმეტი","back_side":"двенадцать","topic":"numbers","transliteration":"tormeti"},
-  {"front_side":"ცამეტი","back_side":"тринадцать","topic":"numbers","transliteration":"tsameti"},
-  {"front_side":"თოთხმეტი","back_side":"четырнадцать","topic":"numbers","transliteration":"totkhmeti"},
-  {"front_side":"თხუთმეტი","back_side":"пятнадцать","topic":"numbers","transliteration":"tkhutmeti"},
-  {"front_side":"თექვსმეტი","back_side":"шестнадцать","topic":"numbers","transliteration":"tekvsmeti"},
-  {"front_side":"ჩვიდმეტი","back_side":"семнадцать","topic":"numbers","transliteration":"chvidmeti"},
-  {"front_side":"თვრამეტი","back_side":"восемнадцать","topic":"numbers","transliteration":"tvrameti"},
-  {"front_side":"ცხრამეტი","back_side":"девятнадцать","topic":"numbers","transliteration":"tskhrameti"},
-  {"front_side":"ოცი","back_side":"двадцать","topic":"numbers","transliteration":"otsi"},
-  {"front_side":"ოცდაერთი","back_side":"двадцать один","topic":"numbers","transliteration":"otsdaerti"},
-  {"front_side":"ოცდაორი","back_side":"двадцать два","topic":"numbers","transliteration":"otsdaori"},
-  {"front_side":"ოცდასამი","back_side":"двадцать три","topic":"numbers","transliteration":"otsdasami"},
-  {"front_side":"ოცდაოთხი","back_side":"двадцать четыре","topic":"numbers","transliteration":"otsdaotkhi"},
-  {"front_side":"ოცდახუთი","back_side":"двадцать пять","topic":"numbers","transliteration":"otsdakhuti"},
-  {"front_side":"ოცდაექვსი","back_side":"двадцать шесть","topic":"numbers","transliteration":"otsdaekvsi"},
-  {"front_side":"ოცდაშვიდი","back_side":"двадцать семь","topic":"numbers","transliteration":"otsdashvidi"},
-  {"front_side":"ოცდარვა","back_side":"двадцать восемь","topic":"numbers","transliteration":"otsdarva"},
-  {"front_side":"ოცდაცხრა","back_side":"двадцать девять","topic":"numbers","transliteration":"otsdatskhra"},
-  {"front_side":"ოცდაათი","back_side":"тридцать","topic":"numbers","transliteration":"otsdaati"},
-  {"front_side":"ოცდათერთმეტი","back_side":"тридцать один","topic":"numbers","transliteration":"otsdatertmeti"},
-  {"front_side":"ოცდათორმეტი","back_side":"тридцать два","topic":"numbers","transliteration":"otsdatormeti"},
-  {"front_side":"ოცდაცამეტი","back_side":"тридцать три","topic":"numbers","transliteration":"otsdatsameti"},
-  {"front_side":"ოცდათოთხმეტი","back_side":"тридцать четыре","topic":"numbers","transliteration":"otsdatotkhmeti"},
-  {"front_side":"ოცდათხუთმეტი","back_side":"тридцать пять","topic":"numbers","transliteration":"otsdatkhutmeti"},
-  {"front_side":"ოცდათექვსმეტი","back_side":"тридцать шесть","topic":"numbers","transliteration":"otsdatekvsmeti"},
-  {"front_side":"ოცდაჩვიდმეტი","back_side":"тридцать семь","topic":"numbers","transliteration":"otsdachvidmeti"},
-  {"front_side":"ოცდათვრამეტი","back_side":"тридцать восемь","topic":"numbers","transliteration":"otsdatvrameti"},
-  {"front_side":"ოცდაცხრამეტი","back_side":"тридцать девять","topic":"numbers","transliteration":"otsdatskhrameti"},
-  {"front_side":"ორმოცი","back_side":"сорок","topic":"numbers","transliteration":"ormotsi"},
-  {"front_side":"ორმოცდაერთი","back_side":"сорок один","topic":"numbers","transliteration":"ormotsdaerti"},
-  {"front_side":"ორმოცდაორი","back_side":"сорок два","topic":"numbers","transliteration":"ormotsdaori"},
-  {"front_side":"ორმოცდასამი","back_side":"сорок три","topic":"numbers","transliteration":"ormotsdasami"},
-  {"front_side":"ორმოცდაოთხი","back_side":"сорок четыре","topic":"numbers","transliteration":"ormotsdaotkhi"},
-  {"front_side":"ორმოცდახუთი","back_side":"сорок пять","topic":"numbers","transliteration":"ormotsdakhuti"},
-  {"front_side":"ორმოცდაექვსი","back_side":"сорок шесть","topic":"numbers","transliteration":"ormotsdaekvsi"},
-  {"front_side":"ორმოცდაშვიდი","back_side":"сорок семь","topic":"numbers","transliteration":"ormotsdashvidi"},
-  {"front_side":"ორმოცდარვა","back_side":"сорок восемь","topic":"numbers","transliteration":"ormotsdarva"},
-  {"front_side":"ორმოცდაცხრა","back_side":"сорок девять","topic":"numbers","transliteration":"ormotsdatskhra"},
-  {"front_side":"შეიძლება დაგელაპარაკოთ?","back_side":"можно с вами поговорить?","topic":"stranger_chat","transliteration":"sheidzleba dagelaparakot?"},
-  {"front_side":"თქვენ აქ მუშაობთ?","back_side":"вы здесь работаете?","topic":"stranger_chat","transliteration":"tkven ak mushaobt?"},
-  {"front_side":"აქ პირველად ვარ","back_side":"я здесь впервые","topic":"stranger_chat","transliteration":"ak pirvelad var"},
-  {"front_side":"რომელი უბანი ჯობია?","back_side":"какой район лучше?","topic":"stranger_chat","transliteration":"romeli უბანი jobia?"},
-  {"front_side":"უსაფრთხოა აქ ღამით?","back_side":"здесь безопасно ночью?","topic":"stranger_chat","transliteration":"usaprtkhoa ak ghamit?"},
-  {"front_side":"კაფეს მირჩევთ?","back_side":"посоветуете кафе?","topic":"stranger_chat","transliteration":"kapes mirchevt?"},
-  {"front_side":"ეს ქუჩა სწორია?","back_side":"это правильная улица?","topic":"stranger_chat","transliteration":"es kucha stsoria?"},
-  {"front_side":"ფოტოს გადამიღებთ?","back_side":"сфотографируете меня?","topic":"stranger_chat","transliteration":"potos gadamighebt?"},
-  {"front_side":"შეგიძლია მისამართით დამეხმარო?","back_side":"можешь помочь с адресом?","topic":"stranger_chat","transliteration":"shegidzlia misamartit damekhmaro?"},
-  {"front_side":"სად შეიძლება დასვენება?","back_side":"где можно отдохнуть?","topic":"stranger_chat","transliteration":"sad sheidzleba dasveneba?"},
-  {"front_side":"რამდენი ხანია აქ ცხოვრობ?","back_side":"как давно ты здесь живешь?","topic":"stranger_chat","transliteration":"ramdeni khania ak tskhovrob?"},
-  {"front_side":"მე თბილისში ვცხოვრობ ახლა","back_side":"я сейчас живу в Тбилиси","topic":"stranger_chat","transliteration":"me tbilisshi vtskhovrob akhla"},
-  {"front_side":"აქ მეგობრები მყავს","back_side":"у меня здесь друзья","topic":"stranger_chat","transliteration":"ak megobrebi mqavs"},
-  {"front_side":"ეს ადგილი მომწონს","back_side":"мне нравится это место","topic":"stranger_chat","transliteration":"es adgili momtsons"},
-  {"front_side":"აპოსტილი","back_side":"апостиль","topic":"public_services","transliteration":"apostili"},
-  {"front_side":"თარგმანი","back_side":"перевод","topic":"public_services","transliteration":"targmani"},
-  {"front_side":"ნოტარიუსი","back_side":"нотариус","topic":"public_services","transliteration":"notariusi"},
-  {"front_side":"დანიშვნა","back_side":"запись/назначение","topic":"public_services","transliteration":"danishvna"},
-  {"front_side":"ელექტრონული რიგი","back_side":"электронная очередь","topic":"public_services","transliteration":"elektronuli rigi"},
-  {"front_side":"საკონსულო","back_side":"консульство","topic":"public_services","transliteration":"sakonsulo"},
-  {"front_side":"განაცხადის ნომერი","back_side":"номер заявления","topic":"public_services","transliteration":"ganatskhadis nomeri"},
-  {"front_side":"მიღების ფანჯარა","back_side":"окно приема","topic":"public_services","transliteration":"mighebis panjara"},
-  {"front_side":"სერვისის საფასური","back_side":"стоимость услуги","topic":"public_services","transliteration":"servisis sapasuri"},
-  {"front_side":"დაჩქარებული მომსახურება","back_side":"ускоренное обслуживание","topic":"public_services","transliteration":"dachkarebuli momsakhureba"},
-  {"front_side":"ჩემი რიგი როდისაა?","back_side":"когда моя очередь?","topic":"public_services","transliteration":"chemi rigi rodisaa?"},
-  {"front_side":"სად მივიღო პასუხი?","back_side":"где получить ответ?","topic":"public_services","transliteration":"sad mivigho pasukhi?"},
-  {"front_side":"ფორმის შევსება მინდა","back_side":"хочу заполнить форму","topic":"public_services","transliteration":"pormis shevseba minda"},
-  {"front_side":"დამხმარე თანამშრომელი","back_side":"сотрудник помощи","topic":"public_services","transliteration":"damkhmare tanamshromeli"},
-  {"front_side":"ხველა","back_side":"кашель","topic":"pharmacy","transliteration":"khvela"},
-  {"front_side":"ყელის ტკივილი","back_side":"боль в горле","topic":"pharmacy","transliteration":"qelis tkivili"},
-  {"front_side":"მუცლის ტკივილი","back_side":"боль в животе","topic":"pharmacy","transliteration":"mutslis tkivili"},
-  {"front_side":"წნევა","back_side":"давление","topic":"pharmacy","transliteration":"tsneva"},
-  {"front_side":"ვიტამინები","back_side":"витамины","topic":"pharmacy","transliteration":"vitaminebi"},
-  {"front_side":"ანტიბიოტიკი","back_side":"антибиотик","topic":"pharmacy","transliteration":"antibiotiki"},
-  {"front_side":"ბინტი","back_side":"бинт","topic":"pharmacy","transliteration":"binti"},
-  {"front_side":"პლასტირი","back_side":"пластырь","topic":"pharmacy","transliteration":"plastiri"},
-  {"front_side":"თერმომეტრი","back_side":"термометр","topic":"pharmacy","transliteration":"termometri"},
-  {"front_side":"დეზინფექტანტი","back_side":"дезинфектант","topic":"pharmacy","transliteration":"dezinfektanti"},
-  {"front_side":"ეს წამალი საკვების შემდეგ მივიღო?","back_side":"это лекарство принимать после еды?","topic":"pharmacy","transliteration":"es ts'amali sakvebis shemdeg mivigho?"},
-  {"front_side":"ბავშვისთვის არის?","back_side":"это для ребенка?","topic":"pharmacy","transliteration":"bavshvistvis aris?"},
-  {"front_side":"გვერდითი ეფექტები აქვს?","back_side":"есть побочные эффекты?","topic":"pharmacy","transliteration":"gverdithi epektebi akvs?"},
-  {"front_side":"უფრო იაფი ანალოგი გაქვთ?","back_side":"есть более дешевый аналог?","topic":"pharmacy","transliteration":"upro iapi analogi gakvt?"}
+  {
+    "front_side": "ა — ანანასი",
+    "back_side": "а (a) — ананас",
+    "topic": "alphabet",
+    "transliteration": "a — ananasi",
+    "difficulty": 1
+  },
+  {
+    "front_side": "ბ — ბანანი",
+    "back_side": "б (b) — банан",
+    "topic": "alphabet",
+    "transliteration": "b — banani",
+    "difficulty": 1
+  },
+  {
+    "front_side": "გ — გამარჯობა",
+    "back_side": "г (g) — привет",
+    "topic": "alphabet",
+    "transliteration": "g — gamarjoba",
+    "difficulty": 1
+  },
+  {
+    "front_side": "დ — დილა",
+    "back_side": "д (d) — утро",
+    "topic": "alphabet",
+    "transliteration": "d — dila",
+    "difficulty": 1
+  },
+  {
+    "front_side": "ე — ერთი",
+    "back_side": "э/е (e) — один",
+    "topic": "alphabet",
+    "transliteration": "e — erti",
+    "difficulty": 1
+  },
+  {
+    "front_side": "ვ — ვაშლი",
+    "back_side": "в (v) — яблоко",
+    "topic": "alphabet",
+    "transliteration": "v — vashli",
+    "difficulty": 1
+  },
+  {
+    "front_side": "ზ — ზამთარი",
+    "back_side": "з (z) — зима",
+    "topic": "alphabet",
+    "transliteration": "z — zamtari",
+    "difficulty": 1
+  },
+  {
+    "front_side": "თ — თევზი",
+    "back_side": "т (t) — рыба",
+    "topic": "alphabet",
+    "transliteration": "t — tevzi",
+    "difficulty": 1
+  },
+  {
+    "front_side": "ი — ისტორია",
+    "back_side": "и (i) — история",
+    "topic": "alphabet",
+    "transliteration": "i — istoria",
+    "difficulty": 1
+  },
+  {
+    "front_side": "კ — კარგი",
+    "back_side": "к (k) — хорошо",
+    "topic": "alphabet",
+    "transliteration": "k — kargi",
+    "difficulty": 1
+  },
+  {
+    "front_side": "ლ — ლიმონი",
+    "back_side": "л (l) — лимон",
+    "topic": "alphabet",
+    "transliteration": "l — limoni",
+    "difficulty": 1
+  },
+  {
+    "front_side": "მ — მადლობა",
+    "back_side": "м (m) — спасибо",
+    "topic": "alphabet",
+    "transliteration": "m — madloba",
+    "difficulty": 1
+  },
+  {
+    "front_side": "ნ — ნარინჯი",
+    "back_side": "н (n) — апельсин",
+    "topic": "alphabet",
+    "transliteration": "n — narinji",
+    "difficulty": 1
+  },
+  {
+    "front_side": "ო — ოჯახი",
+    "back_side": "о (o) — семья",
+    "topic": "alphabet",
+    "transliteration": "o — ojakhi",
+    "difficulty": 1
+  },
+  {
+    "front_side": "პ — პური",
+    "back_side": "п (p) — хлеб",
+    "topic": "alphabet",
+    "transliteration": "p — puri",
+    "difficulty": 1
+  },
+  {
+    "front_side": "ჟ — ჟურნალი",
+    "back_side": "ж (zh) — журнал",
+    "topic": "alphabet",
+    "transliteration": "zh — zhurnali",
+    "difficulty": 1
+  },
+  {
+    "front_side": "რ — რძე",
+    "back_side": "р (r) — молоко",
+    "topic": "alphabet",
+    "transliteration": "r — rdze",
+    "difficulty": 1
+  },
+  {
+    "front_side": "ს — სახლი",
+    "back_side": "с (s) — дом",
+    "topic": "alphabet",
+    "transliteration": "s — sakhli",
+    "difficulty": 1
+  },
+  {
+    "front_side": "ტ — ტაქსი",
+    "back_side": "т (t') — такси",
+    "topic": "alphabet",
+    "transliteration": "t' — taksi",
+    "difficulty": 1
+  },
+  {
+    "front_side": "უ — უნივერსიტეტი",
+    "back_side": "у (u) — университет",
+    "topic": "alphabet",
+    "transliteration": "u — universiteti",
+    "difficulty": 1
+  },
+  {
+    "front_side": "ფ — ფული",
+    "back_side": "ф (p) — деньги",
+    "topic": "alphabet",
+    "transliteration": "p — puli",
+    "difficulty": 1
+  },
+  {
+    "front_side": "ქ — ქალაქი",
+    "back_side": "к (k') — город",
+    "topic": "alphabet",
+    "transliteration": "k' — kalaki",
+    "difficulty": 1
+  },
+  {
+    "front_side": "ღ — ღვინო",
+    "back_side": "г/гх (gh) — вино",
+    "topic": "alphabet",
+    "transliteration": "gh — ghvino",
+    "difficulty": 1
+  },
+  {
+    "front_side": "ყ — ყავა",
+    "back_side": "к (q) — кофе",
+    "topic": "alphabet",
+    "transliteration": "q — qava",
+    "difficulty": 1
+  },
+  {
+    "front_side": "შ — შაქარი",
+    "back_side": "ш (sh) — сахар",
+    "topic": "alphabet",
+    "transliteration": "sh — shakari",
+    "difficulty": 1
+  },
+  {
+    "front_side": "ჩ — ჩაი",
+    "back_side": "ч (ch) — чай",
+    "topic": "alphabet",
+    "transliteration": "ch — chai",
+    "difficulty": 1
+  },
+  {
+    "front_side": "ც — ცხელი",
+    "back_side": "ц (ts) — горячий",
+    "topic": "alphabet",
+    "transliteration": "ts — tskheli",
+    "difficulty": 1
+  },
+  {
+    "front_side": "ძ — ძველი",
+    "back_side": "дз (dz) — старый",
+    "topic": "alphabet",
+    "transliteration": "dz — dzveli",
+    "difficulty": 1
+  },
+  {
+    "front_side": "წ — წყალი",
+    "back_side": "ц (ts') — вода",
+    "topic": "alphabet",
+    "transliteration": "ts' — ts'q'ali",
+    "difficulty": 1
+  },
+  {
+    "front_side": "ჭ — ჭამა",
+    "back_side": "ч (ch') — еда/есть",
+    "topic": "alphabet",
+    "transliteration": "ch' — ch'ama",
+    "difficulty": 1
+  },
+  {
+    "front_side": "ხ — ხილი",
+    "back_side": "х (kh) — фрукты",
+    "topic": "alphabet",
+    "transliteration": "kh — khili",
+    "difficulty": 1
+  },
+  {
+    "front_side": "ჯ — ჯარისკაცი",
+    "back_side": "дж (j) — солдат",
+    "topic": "alphabet",
+    "transliteration": "j — jariskatsi",
+    "difficulty": 1
+  },
+  {
+    "front_side": "ჰ — ჰაერი",
+    "back_side": "х/h (h) — воздух",
+    "topic": "alphabet",
+    "transliteration": "h — haeri",
+    "difficulty": 1
+  },
+  {
+    "front_side": "გამარჯობა",
+    "back_side": "привет",
+    "topic": "small_talk",
+    "transliteration": "gamarjoba",
+    "difficulty": 2
+  },
+  {
+    "front_side": "დილა მშვიდობისა",
+    "back_side": "доброе утро",
+    "topic": "small_talk",
+    "transliteration": "dila mshvidobisa",
+    "difficulty": 3
+  },
+  {
+    "front_side": "საღამო მშვიდობისა",
+    "back_side": "добрый вечер",
+    "topic": "small_talk",
+    "transliteration": "saghamo mshvidobisa",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ნახვამდის",
+    "back_side": "до свидания",
+    "topic": "small_talk",
+    "transliteration": "nakhvamdis",
+    "difficulty": 2
+  },
+  {
+    "front_side": "მადლობა",
+    "back_side": "спасибо",
+    "topic": "small_talk",
+    "transliteration": "madloba",
+    "difficulty": 2
+  },
+  {
+    "front_side": "დიდი მადლობა",
+    "back_side": "большое спасибо",
+    "topic": "small_talk",
+    "transliteration": "didi madloba",
+    "difficulty": 3
+  },
+  {
+    "front_side": "გთხოვ",
+    "back_side": "пожалуйста",
+    "topic": "small_talk",
+    "transliteration": "gtkhov",
+    "difficulty": 2
+  },
+  {
+    "front_side": "ბოდიში",
+    "back_side": "извините",
+    "topic": "small_talk",
+    "transliteration": "bodishi",
+    "difficulty": 2
+  },
+  {
+    "front_side": "კი",
+    "back_side": "да",
+    "topic": "small_talk",
+    "transliteration": "ki",
+    "difficulty": 2
+  },
+  {
+    "front_side": "არა",
+    "back_side": "нет",
+    "topic": "small_talk",
+    "transliteration": "ara",
+    "difficulty": 2
+  },
+  {
+    "front_side": "როგორ ხარ?",
+    "back_side": "как ты?",
+    "topic": "small_talk",
+    "transliteration": "rogor khar?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "კარგად ვარ",
+    "back_side": "я хорошо",
+    "topic": "small_talk",
+    "transliteration": "kargad var",
+    "difficulty": 3
+  },
+  {
+    "front_side": "მე რუსი ვარ",
+    "back_side": "я русская",
+    "topic": "small_talk",
+    "transliteration": "me rusi var",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ქართულს ვსწავლობ",
+    "back_side": "я учу грузинский",
+    "topic": "small_talk",
+    "transliteration": "kartuls vstsavlob",
+    "difficulty": 3
+  },
+  {
+    "front_side": "თქვენ ინგლისურად ლაპარაკობთ?",
+    "back_side": "вы говорите по-английски?",
+    "topic": "small_talk",
+    "transliteration": "tkven inglisurad laparakobt?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "მე არ მესმის",
+    "back_side": "я не понимаю",
+    "topic": "small_talk",
+    "transliteration": "me ar mesmis",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ნელა, გთხოვთ",
+    "back_side": "медленнее, пожалуйста",
+    "topic": "small_talk",
+    "transliteration": "nela, gtkhovt",
+    "difficulty": 3
+  },
+  {
+    "front_side": "სად არის...?",
+    "back_side": "где находится...?",
+    "topic": "transport",
+    "transliteration": "sad aris...?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "მარჯვნივ",
+    "back_side": "направо",
+    "topic": "transport",
+    "transliteration": "marjvniv",
+    "difficulty": 2
+  },
+  {
+    "front_side": "მარცხნივ",
+    "back_side": "налево",
+    "topic": "transport",
+    "transliteration": "martskhniv",
+    "difficulty": 2
+  },
+  {
+    "front_side": "პირდაპირ",
+    "back_side": "прямо",
+    "topic": "transport",
+    "transliteration": "pirdapir",
+    "difficulty": 2
+  },
+  {
+    "front_side": "გაჩერება",
+    "back_side": "остановка",
+    "topic": "transport",
+    "transliteration": "gachereba",
+    "difficulty": 2
+  },
+  {
+    "front_side": "ავტობუსი",
+    "back_side": "автобус",
+    "topic": "transport",
+    "transliteration": "avtobusi",
+    "difficulty": 2
+  },
+  {
+    "front_side": "მეტრო",
+    "back_side": "метро",
+    "topic": "transport",
+    "transliteration": "metro",
+    "difficulty": 2
+  },
+  {
+    "front_side": "ტაქსი",
+    "back_side": "такси",
+    "topic": "transport",
+    "transliteration": "taksi",
+    "difficulty": 2
+  },
+  {
+    "front_side": "ბილეთი",
+    "back_side": "билет",
+    "topic": "transport",
+    "transliteration": "bileti",
+    "difficulty": 2
+  },
+  {
+    "front_side": "ერთი ბილეთი, გთხოვთ",
+    "back_side": "один билет, пожалуйста",
+    "topic": "transport",
+    "transliteration": "erti bileti, gtkhovt",
+    "difficulty": 3
+  },
+  {
+    "front_side": "რამდენი ღირს ბილეთი?",
+    "back_side": "сколько стоит билет?",
+    "topic": "transport",
+    "transliteration": "ramdeni ghirs bileti?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ეს ავტობუსი ცენტრში მიდის?",
+    "back_side": "этот автобус идет в центр?",
+    "topic": "transport",
+    "transliteration": "es avtobusi centrshi midis?",
+    "difficulty": 4
+  },
+  {
+    "front_side": "რომელი სადგურია შემდეგი?",
+    "back_side": "какая следующая станция?",
+    "topic": "transport",
+    "transliteration": "romeli sadguria shemdegi?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "მაღაზია",
+    "back_side": "магазин",
+    "topic": "grocery",
+    "transliteration": "maghazia",
+    "difficulty": 2
+  },
+  {
+    "front_side": "სუპერმარკეტი",
+    "back_side": "супермаркет",
+    "topic": "grocery",
+    "transliteration": "supermarketi",
+    "difficulty": 2
+  },
+  {
+    "front_side": "პური",
+    "back_side": "хлеб",
+    "topic": "grocery",
+    "transliteration": "puri",
+    "difficulty": 2
+  },
+  {
+    "front_side": "წყალი",
+    "back_side": "вода",
+    "topic": "grocery",
+    "transliteration": "ts'q'ali",
+    "difficulty": 2
+  },
+  {
+    "front_side": "რძე",
+    "back_side": "молоко",
+    "topic": "grocery",
+    "transliteration": "rdze",
+    "difficulty": 2
+  },
+  {
+    "front_side": "ყავა",
+    "back_side": "кофе",
+    "topic": "grocery",
+    "transliteration": "qava",
+    "difficulty": 2
+  },
+  {
+    "front_side": "ჩაი",
+    "back_side": "чай",
+    "topic": "grocery",
+    "transliteration": "chai",
+    "difficulty": 2
+  },
+  {
+    "front_side": "შაქარი",
+    "back_side": "сахар",
+    "topic": "grocery",
+    "transliteration": "shakari",
+    "difficulty": 2
+  },
+  {
+    "front_side": "მარილი",
+    "back_side": "соль",
+    "topic": "grocery",
+    "transliteration": "marili",
+    "difficulty": 2
+  },
+  {
+    "front_side": "ხილი",
+    "back_side": "фрукты",
+    "topic": "grocery",
+    "transliteration": "khili",
+    "difficulty": 2
+  },
+  {
+    "front_side": "ბოსტნეული",
+    "back_side": "овощи",
+    "topic": "grocery",
+    "transliteration": "bostneuli",
+    "difficulty": 2
+  },
+  {
+    "front_side": "ვაშლი",
+    "back_side": "яблоко",
+    "topic": "grocery",
+    "transliteration": "vashli",
+    "difficulty": 2
+  },
+  {
+    "front_side": "ბანანი",
+    "back_side": "банан",
+    "topic": "grocery",
+    "transliteration": "banani",
+    "difficulty": 2
+  },
+  {
+    "front_side": "კარტოფილი",
+    "back_side": "картофель",
+    "topic": "grocery",
+    "transliteration": "kartofili",
+    "difficulty": 2
+  },
+  {
+    "front_side": "ხორცი",
+    "back_side": "мясо",
+    "topic": "grocery",
+    "transliteration": "khortsi",
+    "difficulty": 2
+  },
+  {
+    "front_side": "თევზი",
+    "back_side": "рыба",
+    "topic": "grocery",
+    "transliteration": "tevzi",
+    "difficulty": 2
+  },
+  {
+    "front_side": "რამდენი ღირს?",
+    "back_side": "сколько стоит?",
+    "topic": "market",
+    "transliteration": "ramdeni ghirs?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ძალიან ძვირია",
+    "back_side": "слишком дорого",
+    "topic": "market",
+    "transliteration": "dzalian dzviria",
+    "difficulty": 3
+  },
+  {
+    "front_side": "იაფია",
+    "back_side": "дешево",
+    "topic": "market",
+    "transliteration": "iapia",
+    "difficulty": 2
+  },
+  {
+    "front_side": "შეიძლება ცოტა იაფად?",
+    "back_side": "можно немного дешевле?",
+    "topic": "market",
+    "transliteration": "sheidzleba cota iapad?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ბაზარი",
+    "back_side": "рынок",
+    "topic": "market",
+    "transliteration": "bazari",
+    "difficulty": 2
+  },
+  {
+    "front_side": "რაოდენობა",
+    "back_side": "количество",
+    "topic": "market",
+    "transliteration": "raodenoba",
+    "difficulty": 2
+  },
+  {
+    "front_side": "კილოგრამი",
+    "back_side": "килограмм",
+    "topic": "market",
+    "transliteration": "kilogrami",
+    "difficulty": 2
+  },
+  {
+    "front_side": "ნახევარი კილო",
+    "back_side": "полкилограмма",
+    "topic": "market",
+    "transliteration": "nakhevari kilo",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ჩანთა",
+    "back_side": "пакет/сумка",
+    "topic": "market",
+    "transliteration": "chanta",
+    "difficulty": 2
+  },
+  {
+    "front_side": "მინდა ეს",
+    "back_side": "я хочу это",
+    "topic": "market",
+    "transliteration": "minda es",
+    "difficulty": 3
+  },
+  {
+    "front_side": "სად არის სალარო?",
+    "back_side": "где касса?",
+    "topic": "market",
+    "transliteration": "sad aris salaro?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ბარათით გადახდა შეიძლება?",
+    "back_side": "можно оплатить картой?",
+    "topic": "market",
+    "transliteration": "baratit gadakhda sheidzleba?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ნაღდი ფული",
+    "back_side": "наличные",
+    "topic": "market",
+    "transliteration": "naghdi puli",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ბარათი",
+    "back_side": "карта",
+    "topic": "market",
+    "transliteration": "barati",
+    "difficulty": 2
+  },
+  {
+    "front_side": "გამარჯობა, როგორ ხართ?",
+    "back_side": "здравствуйте, как вы?",
+    "topic": "small_talk",
+    "transliteration": "gamarjoba, rogor khart?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "მე ტურისტი ვარ",
+    "back_side": "я туристка",
+    "topic": "small_talk",
+    "transliteration": "me turisti var",
+    "difficulty": 3
+  },
+  {
+    "front_side": "თბილისიდან ხარ?",
+    "back_side": "ты из Тбилиси?",
+    "topic": "small_talk",
+    "transliteration": "tbilisidan khar?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "დღეს ცივა",
+    "back_side": "сегодня холодно",
+    "topic": "small_talk",
+    "transliteration": "dghes civa",
+    "difficulty": 3
+  },
+  {
+    "front_side": "დღეს ცხელა",
+    "back_side": "сегодня жарко",
+    "topic": "small_talk",
+    "transliteration": "dghes tskhela",
+    "difficulty": 3
+  },
+  {
+    "front_side": "მე მშია",
+    "back_side": "я голодна",
+    "topic": "small_talk",
+    "transliteration": "me mshia",
+    "difficulty": 3
+  },
+  {
+    "front_side": "მე მწყურია",
+    "back_side": "я хочу пить",
+    "topic": "small_talk",
+    "transliteration": "me mts'q'uria",
+    "difficulty": 3
+  },
+  {
+    "front_side": "რესტორანი",
+    "back_side": "ресторан",
+    "topic": "small_talk",
+    "transliteration": "restorani",
+    "difficulty": 2
+  },
+  {
+    "front_side": "მენიუ, გთხოვთ",
+    "back_side": "меню, пожалуйста",
+    "topic": "small_talk",
+    "transliteration": "meniu, gtkhovt",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ანგარიში, გთხოვთ",
+    "back_side": "счет, пожалуйста",
+    "topic": "small_talk",
+    "transliteration": "angarishi, gtkhovt",
+    "difficulty": 3
+  },
+  {
+    "front_side": "დღეს",
+    "back_side": "сегодня",
+    "topic": "small_talk",
+    "transliteration": "dghes",
+    "difficulty": 2
+  },
+  {
+    "front_side": "ხვალ",
+    "back_side": "завтра",
+    "topic": "small_talk",
+    "transliteration": "khval",
+    "difficulty": 2
+  },
+  {
+    "front_side": "ახლა",
+    "back_side": "сейчас",
+    "topic": "small_talk",
+    "transliteration": "akhla",
+    "difficulty": 2
+  },
+  {
+    "front_side": "ერთი",
+    "back_side": "один",
+    "topic": "numbers",
+    "transliteration": "erti",
+    "difficulty": 1
+  },
+  {
+    "front_side": "ორი",
+    "back_side": "два",
+    "topic": "numbers",
+    "transliteration": "ori",
+    "difficulty": 1
+  },
+  {
+    "front_side": "სამი",
+    "back_side": "три",
+    "topic": "numbers",
+    "transliteration": "sami",
+    "difficulty": 1
+  },
+  {
+    "front_side": "ოთხი",
+    "back_side": "четыре",
+    "topic": "numbers",
+    "transliteration": "otkhi",
+    "difficulty": 1
+  },
+  {
+    "front_side": "ხუთი",
+    "back_side": "пять",
+    "topic": "numbers",
+    "transliteration": "khuti",
+    "difficulty": 1
+  },
+  {
+    "front_side": "შეიძლება გკითხოთ?",
+    "back_side": "можно вас спросить?",
+    "topic": "stranger_chat",
+    "transliteration": "sheidzleba gkitkhot?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "თქვენ აქედან ხართ?",
+    "back_side": "вы отсюда?",
+    "topic": "stranger_chat",
+    "transliteration": "tkven akedan khart?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "საიდან ხართ?",
+    "back_side": "откуда вы?",
+    "topic": "stranger_chat",
+    "transliteration": "saidan khart?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "რა გქვია?",
+    "back_side": "как тебя зовут?",
+    "topic": "stranger_chat",
+    "transliteration": "ra gkvia?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "სახელი",
+    "back_side": "имя",
+    "topic": "stranger_chat",
+    "transliteration": "sakheli",
+    "difficulty": 2
+  },
+  {
+    "front_side": "სასიამოვნოა",
+    "back_side": "приятно познакомиться",
+    "topic": "stranger_chat",
+    "transliteration": "sasiamovnoa",
+    "difficulty": 2
+  },
+  {
+    "front_side": "რას აკეთებთ?",
+    "back_side": "чем занимаетесь?",
+    "topic": "stranger_chat",
+    "transliteration": "ras aketebt?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "დიდი ხანია საქართველოში ხართ?",
+    "back_side": "вы давно в Грузии?",
+    "topic": "stranger_chat",
+    "transliteration": "didi khania sakartveloshi khart?",
+    "difficulty": 4
+  },
+  {
+    "front_side": "მოგწონთ საქართველო?",
+    "back_side": "вам нравится Грузия?",
+    "topic": "stranger_chat",
+    "transliteration": "mogts'ont sakartvelo?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ძალიან ლამაზი ქალაქია",
+    "back_side": "очень красивый город",
+    "topic": "stranger_chat",
+    "transliteration": "dzalian lamazi kalakia",
+    "difficulty": 3
+  },
+  {
+    "front_side": "რამე კარგ ადგილს მირჩევთ?",
+    "back_side": "посоветуете хорошее место?",
+    "topic": "stranger_chat",
+    "transliteration": "rame karg adgils mirchevt?",
+    "difficulty": 4
+  },
+  {
+    "front_side": "დამეხმარეთ, გთხოვთ",
+    "back_side": "помогите, пожалуйста",
+    "topic": "stranger_chat",
+    "transliteration": "damekhmaret, gtkhovt",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ქართველი ხართ?",
+    "back_side": "вы грузин(ка)?",
+    "topic": "stranger_chat",
+    "transliteration": "kartveli khart?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "აქ ცხოვრობთ?",
+    "back_side": "вы здесь живёте?",
+    "topic": "stranger_chat",
+    "transliteration": "ak tskhovrobt?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "იუსტიციის სახლი",
+    "back_side": "Дом юстиции",
+    "topic": "public_services",
+    "transliteration": "iustitsiis sakhli",
+    "difficulty": 5
+  },
+  {
+    "front_side": "საგადასახადო სამსახური",
+    "back_side": "налоговая служба",
+    "topic": "public_services",
+    "transliteration": "sagadasakhado samsakhuri",
+    "difficulty": 5
+  },
+  {
+    "front_side": "ცნობა",
+    "back_side": "справка",
+    "topic": "public_services",
+    "transliteration": "tsnoba",
+    "difficulty": 4
+  },
+  {
+    "front_side": "დოკუმენტი",
+    "back_side": "документ",
+    "topic": "public_services",
+    "transliteration": "dokumenti",
+    "difficulty": 4
+  },
+  {
+    "front_side": "პირადობის მოწმობა",
+    "back_side": "удостоверение личности",
+    "topic": "public_services",
+    "transliteration": "piradobis mots'moba",
+    "difficulty": 5
+  },
+  {
+    "front_side": "პასპორტი",
+    "back_side": "паспорт",
+    "topic": "public_services",
+    "transliteration": "pasporti",
+    "difficulty": 4
+  },
+  {
+    "front_side": "დაბადების მოწმობა",
+    "back_side": "свидетельство о рождении",
+    "topic": "public_services",
+    "transliteration": "dabadebis mots'moba",
+    "difficulty": 5
+  },
+  {
+    "front_side": "ქორწინების მოწმობა",
+    "back_side": "свидетельство о браке",
+    "topic": "public_services",
+    "transliteration": "korts'inebis mots'moba",
+    "difficulty": 5
+  },
+  {
+    "front_side": "მინდა ცნობის აღება",
+    "back_side": "я хочу получить справку",
+    "topic": "public_services",
+    "transliteration": "minda tsnobis agheba",
+    "difficulty": 5
+  },
+  {
+    "front_side": "განცხადება",
+    "back_side": "заявление",
+    "topic": "public_services",
+    "transliteration": "gantskhadeba",
+    "difficulty": 4
+  },
+  {
+    "front_side": "რეგისტრაცია",
+    "back_side": "регистрация",
+    "topic": "public_services",
+    "transliteration": "registratsia",
+    "difficulty": 4
+  },
+  {
+    "front_side": "სად ჩავაბარო დოკუმენტები?",
+    "back_side": "где сдать документы?",
+    "topic": "public_services",
+    "transliteration": "sad chavabaro dokumentebi?",
+    "difficulty": 5
+  },
+  {
+    "front_side": "რამდენ ხანში იქნება მზად?",
+    "back_side": "через сколько будет готово?",
+    "topic": "public_services",
+    "transliteration": "ramden khanshi ikneba mzad?",
+    "difficulty": 5
+  },
+  {
+    "front_side": "ასლი",
+    "back_side": "копия",
+    "topic": "public_services",
+    "transliteration": "asli",
+    "difficulty": 4
+  },
+  {
+    "front_side": "ხელმოწერა",
+    "back_side": "подпись",
+    "topic": "public_services",
+    "transliteration": "khelmots'era",
+    "difficulty": 4
+  },
+  {
+    "front_side": "რა დოკუმენტებია საჭირო?",
+    "back_side": "какие документы нужны?",
+    "topic": "public_services",
+    "transliteration": "ra dokumentebia sach'iro?",
+    "difficulty": 5
+  },
+  {
+    "front_side": "რიგის ნომერი",
+    "back_side": "номер очереди",
+    "topic": "public_services",
+    "transliteration": "rigis nomeri",
+    "difficulty": 5
+  },
+  {
+    "front_side": "საფასური",
+    "back_side": "пошлина",
+    "topic": "public_services",
+    "transliteration": "sapasuri",
+    "difficulty": 4
+  },
+  {
+    "front_side": "აფთიაქი",
+    "back_side": "аптека",
+    "topic": "pharmacy",
+    "transliteration": "aptiaki",
+    "difficulty": 3
+  },
+  {
+    "front_side": "წამალი",
+    "back_side": "лекарство",
+    "topic": "pharmacy",
+    "transliteration": "ts'amali",
+    "difficulty": 3
+  },
+  {
+    "front_side": "რეცეპტი",
+    "back_side": "рецепт",
+    "topic": "pharmacy",
+    "transliteration": "retsepti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ტაბლეტი",
+    "back_side": "таблетка",
+    "topic": "pharmacy",
+    "transliteration": "tableti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "სიროპი",
+    "back_side": "сироп",
+    "topic": "pharmacy",
+    "transliteration": "siropi",
+    "difficulty": 3
+  },
+  {
+    "front_side": "მალამო",
+    "back_side": "мазь",
+    "topic": "pharmacy",
+    "transliteration": "malamo",
+    "difficulty": 3
+  },
+  {
+    "front_side": "მაქვს რეცეპტი",
+    "back_side": "у меня есть рецепт",
+    "topic": "pharmacy",
+    "transliteration": "makvs retsepti",
+    "difficulty": 4
+  },
+  {
+    "front_side": "რეცეპტი საჭიროა?",
+    "back_side": "нужен рецепт?",
+    "topic": "pharmacy",
+    "transliteration": "retsepti sach'iroa?",
+    "difficulty": 4
+  },
+  {
+    "front_side": "თავი მტკივა",
+    "back_side": "у меня болит голова",
+    "topic": "pharmacy",
+    "transliteration": "tavi mtkiva",
+    "difficulty": 4
+  },
+  {
+    "front_side": "ცხელება",
+    "back_side": "температура",
+    "topic": "pharmacy",
+    "transliteration": "tskheleba",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ალერგია",
+    "back_side": "аллергия",
+    "topic": "pharmacy",
+    "transliteration": "alergia",
+    "difficulty": 3
+  },
+  {
+    "front_side": "გაციება",
+    "back_side": "простуда",
+    "topic": "pharmacy",
+    "transliteration": "gatsieba",
+    "difficulty": 3
+  },
+  {
+    "front_side": "თავის ტკივილის წამალი გაქვთ?",
+    "back_side": "есть лекарство от головной боли?",
+    "topic": "pharmacy",
+    "transliteration": "tavis tkivilis ts'amali gakvt?",
+    "difficulty": 5
+  },
+  {
+    "front_side": "რამდენჯერ დღეში მივიღო?",
+    "back_side": "сколько раз в день принимать?",
+    "topic": "pharmacy",
+    "transliteration": "ramdendjer dgheshi mivigho?",
+    "difficulty": 4
+  },
+  {
+    "front_side": "ფარმაცევტი",
+    "back_side": "фармацевт",
+    "topic": "pharmacy",
+    "transliteration": "parmatsevti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "როგორ არის ამინდი?",
+    "back_side": "какая погода?",
+    "topic": "small_talk",
+    "transliteration": "rogor aris amindi?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "დღეს კარგი ამინდია",
+    "back_side": "сегодня хорошая погода",
+    "topic": "small_talk",
+    "transliteration": "dghes kargi amindia",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ძალიან მიხარია",
+    "back_side": "я очень рада",
+    "topic": "small_talk",
+    "transliteration": "dzalian mikharia",
+    "difficulty": 3
+  },
+  {
+    "front_side": "მე ცოტა დაღლილი ვარ",
+    "back_side": "я немного устала",
+    "topic": "small_talk",
+    "transliteration": "me cota daghlili var",
+    "difficulty": 4
+  },
+  {
+    "front_side": "მალე დავბრუნდები",
+    "back_side": "я скоро вернусь",
+    "topic": "small_talk",
+    "transliteration": "male davbrundebi",
+    "difficulty": 3
+  },
+  {
+    "front_side": "სასიამოვნო დღე გისურვებთ",
+    "back_side": "желаю вам хорошего дня",
+    "topic": "small_talk",
+    "transliteration": "sasiamovno dghe gisurvebt",
+    "difficulty": 3
+  },
+  {
+    "front_side": "გმადლობთ დახმარებისთვის",
+    "back_side": "спасибо за помощь",
+    "topic": "small_talk",
+    "transliteration": "gmadlobt dakhmarebistvis",
+    "difficulty": 3
+  },
+  {
+    "front_side": "კარგ მოგზაურობას გისურვებთ",
+    "back_side": "желаю хорошей поездки",
+    "topic": "small_talk",
+    "transliteration": "karg mogzaurobas gisurvebt",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ისევ შევხვდებით",
+    "back_side": "еще увидимся",
+    "topic": "small_talk",
+    "transliteration": "isev shevkhvdebit",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ყველაფერი კარგად იქნება",
+    "back_side": "все будет хорошо",
+    "topic": "small_talk",
+    "transliteration": "qvelaperi kargad ikneba",
+    "difficulty": 3
+  },
+  {
+    "front_side": "შეგიძლია გამიმეორო?",
+    "back_side": "можешь повторить?",
+    "topic": "small_talk",
+    "transliteration": "shegidzlia gamimeoro?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ცოტა ხმამაღლა თქვი",
+    "back_side": "скажи чуть громче",
+    "topic": "small_talk",
+    "transliteration": "cota khmamaghla tkvi",
+    "difficulty": 3
+  },
+  {
+    "front_side": "მე ახლოს ვცხოვრობ",
+    "back_side": "я живу рядом",
+    "topic": "small_talk",
+    "transliteration": "me akhlos vtskhovrob",
+    "difficulty": 3
+  },
+  {
+    "front_side": "დღეს ბევრი საქმე მაქვს",
+    "back_side": "сегодня у меня много дел",
+    "topic": "small_talk",
+    "transliteration": "dghes bevri sakme makvs",
+    "difficulty": 4
+  },
+  {
+    "front_side": "მატარებელი",
+    "back_side": "поезд",
+    "topic": "transport",
+    "transliteration": "matarebeli",
+    "difficulty": 2
+  },
+  {
+    "front_side": "სადგური",
+    "back_side": "вокзал/станция",
+    "topic": "transport",
+    "transliteration": "sadguri",
+    "difficulty": 2
+  },
+  {
+    "front_side": "აეროპორტი",
+    "back_side": "аэропорт",
+    "topic": "transport",
+    "transliteration": "aeroporti",
+    "difficulty": 2
+  },
+  {
+    "front_side": "მარშრუტი",
+    "back_side": "маршрут",
+    "topic": "transport",
+    "transliteration": "marshruti",
+    "difficulty": 2
+  },
+  {
+    "front_side": "საცობი",
+    "back_side": "пробка",
+    "topic": "transport",
+    "transliteration": "satsobi",
+    "difficulty": 2
+  },
+  {
+    "front_side": "ეს ადგილი თავისუფალია?",
+    "back_side": "это место свободно?",
+    "topic": "transport",
+    "transliteration": "es adgili tavisuphalia?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "შემდეგი ავტობუსი როდის არის?",
+    "back_side": "когда следующий автобус?",
+    "topic": "transport",
+    "transliteration": "shemdegi avtobusi rodis aris?",
+    "difficulty": 4
+  },
+  {
+    "front_side": "მეტროს ბარათი სად ვიყიდო?",
+    "back_side": "где купить карту метро?",
+    "topic": "transport",
+    "transliteration": "metros barati sad viqido?",
+    "difficulty": 4
+  },
+  {
+    "front_side": "ბარათის შევსება მინდა",
+    "back_side": "хочу пополнить карту",
+    "topic": "transport",
+    "transliteration": "baratis shevseba minda",
+    "difficulty": 3
+  },
+  {
+    "front_side": "რომელი ხაზი მიდის ცენტრში?",
+    "back_side": "какая линия идет в центр?",
+    "topic": "transport",
+    "transliteration": "romeli khazi midis centrshi?",
+    "difficulty": 4
+  },
+  {
+    "front_side": "გამოსასვლელი სად არის?",
+    "back_side": "где выход?",
+    "topic": "transport",
+    "transliteration": "gamosasvleli sad aris?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ფეხით რამდენი წუთია?",
+    "back_side": "сколько минут пешком?",
+    "topic": "transport",
+    "transliteration": "pekhit ramdeni tsutia?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "მე ვაგვიანებ",
+    "back_side": "я опаздываю",
+    "topic": "transport",
+    "transliteration": "me vagvianeb",
+    "difficulty": 3
+  },
+  {
+    "front_side": "კარი გააღეთ, გთხოვთ",
+    "back_side": "откройте дверь, пожалуйста",
+    "topic": "transport",
+    "transliteration": "kari gaaghet, gtkhovt",
+    "difficulty": 3
+  },
+  {
+    "front_side": "კვერცხი",
+    "back_side": "яйцо",
+    "topic": "grocery",
+    "transliteration": "kvertskhi",
+    "difficulty": 2
+  },
+  {
+    "front_side": "ყველი",
+    "back_side": "сыр",
+    "topic": "grocery",
+    "transliteration": "qveli",
+    "difficulty": 2
+  },
+  {
+    "front_side": "კარაქი",
+    "back_side": "масло",
+    "topic": "grocery",
+    "transliteration": "karaki",
+    "difficulty": 2
+  },
+  {
+    "front_side": "იოგურტი",
+    "back_side": "йогурт",
+    "topic": "grocery",
+    "transliteration": "iogurti",
+    "difficulty": 2
+  },
+  {
+    "front_side": "ბრინჯი",
+    "back_side": "рис",
+    "topic": "grocery",
+    "transliteration": "brinji",
+    "difficulty": 2
+  },
+  {
+    "front_side": "მაკარონი",
+    "back_side": "макароны",
+    "topic": "grocery",
+    "transliteration": "makaroni",
+    "difficulty": 2
+  },
+  {
+    "front_side": "ქათამი",
+    "back_side": "курица",
+    "topic": "grocery",
+    "transliteration": "katami",
+    "difficulty": 2
+  },
+  {
+    "front_side": "პომიდორი",
+    "back_side": "помидор",
+    "topic": "grocery",
+    "transliteration": "pomidori",
+    "difficulty": 2
+  },
+  {
+    "front_side": "კიტრი",
+    "back_side": "огурец",
+    "topic": "grocery",
+    "transliteration": "kitri",
+    "difficulty": 2
+  },
+  {
+    "front_side": "ხახვი",
+    "back_side": "лук",
+    "topic": "grocery",
+    "transliteration": "khakhvi",
+    "difficulty": 2
+  },
+  {
+    "front_side": "ნიორი",
+    "back_side": "чеснок",
+    "topic": "grocery",
+    "transliteration": "niori",
+    "difficulty": 2
+  },
+  {
+    "front_side": "წვენი",
+    "back_side": "сок",
+    "topic": "grocery",
+    "transliteration": "tsveni",
+    "difficulty": 2
+  },
+  {
+    "front_side": "მინერალური წყალი",
+    "back_side": "минеральная вода",
+    "topic": "grocery",
+    "transliteration": "mineraluri ts'q'ali",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ეს ახალია?",
+    "back_side": "это свежее?",
+    "topic": "grocery",
+    "transliteration": "es akhalia?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ფასი",
+    "back_side": "цена",
+    "topic": "market",
+    "transliteration": "pasi",
+    "difficulty": 2
+  },
+  {
+    "front_side": "ფასდაკლება",
+    "back_side": "скидка",
+    "topic": "market",
+    "transliteration": "pasdakleba",
+    "difficulty": 2
+  },
+  {
+    "front_side": "სასწორი",
+    "back_side": "весы",
+    "topic": "market",
+    "transliteration": "sastsori",
+    "difficulty": 2
+  },
+  {
+    "front_side": "შეკვრა",
+    "back_side": "упаковка",
+    "topic": "market",
+    "transliteration": "shekvra",
+    "difficulty": 2
+  },
+  {
+    "front_side": "მეტი არ მაქვს",
+    "back_side": "у меня больше нет",
+    "topic": "market",
+    "transliteration": "meti ar makvs",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ძალიან ძვირია ჩემთვის",
+    "back_side": "для меня слишком дорого",
+    "topic": "market",
+    "transliteration": "dzalian dzviria chemtvis",
+    "difficulty": 3
+  },
+  {
+    "front_side": "მომეცით ერთი კილო",
+    "back_side": "дайте один килограмм",
+    "topic": "market",
+    "transliteration": "mometsit erti kilo",
+    "difficulty": 3
+  },
+  {
+    "front_side": "პატარა პარკი მინდა",
+    "back_side": "мне нужен маленький пакет",
+    "topic": "market",
+    "transliteration": "patara parki minda",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ხურდა გაქვთ?",
+    "back_side": "у вас есть сдача?",
+    "topic": "market",
+    "transliteration": "khurda gakvt?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "რიგში ვდგავარ",
+    "back_side": "я стою в очереди",
+    "topic": "market",
+    "transliteration": "rigshi vdgavar",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ეს უფრო ახალია?",
+    "back_side": "это свежее?",
+    "topic": "market",
+    "transliteration": "es upro akhalia?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "შეარჩიეთ კარგი",
+    "back_side": "выберите хороший",
+    "topic": "market",
+    "transliteration": "shearchiet kargi",
+    "difficulty": 3
+  },
+  {
+    "front_side": "კიდევ რას მირჩევთ?",
+    "back_side": "что еще посоветуете?",
+    "topic": "market",
+    "transliteration": "kidev ras mirchevt?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "საერთო ჯამი რამდენია?",
+    "back_side": "какая итоговая сумма?",
+    "topic": "market",
+    "transliteration": "saerto jami ramdenia?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ექვსი",
+    "back_side": "шесть",
+    "topic": "numbers",
+    "transliteration": "ekvsi",
+    "difficulty": 2
+  },
+  {
+    "front_side": "შვიდი",
+    "back_side": "семь",
+    "topic": "numbers",
+    "transliteration": "shvidi",
+    "difficulty": 2
+  },
+  {
+    "front_side": "რვა",
+    "back_side": "восемь",
+    "topic": "numbers",
+    "transliteration": "rva",
+    "difficulty": 2
+  },
+  {
+    "front_side": "ცხრა",
+    "back_side": "девять",
+    "topic": "numbers",
+    "transliteration": "tskhra",
+    "difficulty": 2
+  },
+  {
+    "front_side": "ათი",
+    "back_side": "десять",
+    "topic": "numbers",
+    "transliteration": "ati",
+    "difficulty": 2
+  },
+  {
+    "front_side": "თერთმეტი",
+    "back_side": "одиннадцать",
+    "topic": "numbers",
+    "transliteration": "tertmeti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "თორმეტი",
+    "back_side": "двенадцать",
+    "topic": "numbers",
+    "transliteration": "tormeti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ცამეტი",
+    "back_side": "тринадцать",
+    "topic": "numbers",
+    "transliteration": "tsameti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "თოთხმეტი",
+    "back_side": "четырнадцать",
+    "topic": "numbers",
+    "transliteration": "totkhmeti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "თხუთმეტი",
+    "back_side": "пятнадцать",
+    "topic": "numbers",
+    "transliteration": "tkhutmeti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "თექვსმეტი",
+    "back_side": "шестнадцать",
+    "topic": "numbers",
+    "transliteration": "tekvsmeti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ჩვიდმეტი",
+    "back_side": "семнадцать",
+    "topic": "numbers",
+    "transliteration": "chvidmeti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "თვრამეტი",
+    "back_side": "восемнадцать",
+    "topic": "numbers",
+    "transliteration": "tvrameti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ცხრამეტი",
+    "back_side": "девятнадцать",
+    "topic": "numbers",
+    "transliteration": "tskhrameti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ოცი",
+    "back_side": "двадцать",
+    "topic": "numbers",
+    "transliteration": "otsi",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ოცდაერთი",
+    "back_side": "двадцать один",
+    "topic": "numbers",
+    "transliteration": "otsdaerti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ოცდაორი",
+    "back_side": "двадцать два",
+    "topic": "numbers",
+    "transliteration": "otsdaori",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ოცდასამი",
+    "back_side": "двадцать три",
+    "topic": "numbers",
+    "transliteration": "otsdasami",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ოცდაოთხი",
+    "back_side": "двадцать четыре",
+    "topic": "numbers",
+    "transliteration": "otsdaotkhi",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ოცდახუთი",
+    "back_side": "двадцать пять",
+    "topic": "numbers",
+    "transliteration": "otsdakhuti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ოცდაექვსი",
+    "back_side": "двадцать шесть",
+    "topic": "numbers",
+    "transliteration": "otsdaekvsi",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ოცდაშვიდი",
+    "back_side": "двадцать семь",
+    "topic": "numbers",
+    "transliteration": "otsdashvidi",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ოცდარვა",
+    "back_side": "двадцать восемь",
+    "topic": "numbers",
+    "transliteration": "otsdarva",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ოცდაცხრა",
+    "back_side": "двадцать девять",
+    "topic": "numbers",
+    "transliteration": "otsdatskhra",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ოცდაათი",
+    "back_side": "тридцать",
+    "topic": "numbers",
+    "transliteration": "otsdaati",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ოცდათერთმეტი",
+    "back_side": "тридцать один",
+    "topic": "numbers",
+    "transliteration": "otsdatertmeti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ოცდათორმეტი",
+    "back_side": "тридцать два",
+    "topic": "numbers",
+    "transliteration": "otsdatormeti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ოცდაცამეტი",
+    "back_side": "тридцать три",
+    "topic": "numbers",
+    "transliteration": "otsdatsameti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ოცდათოთხმეტი",
+    "back_side": "тридцать четыре",
+    "topic": "numbers",
+    "transliteration": "otsdatotkhmeti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ოცდათხუთმეტი",
+    "back_side": "тридцать пять",
+    "topic": "numbers",
+    "transliteration": "otsdatkhutmeti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ოცდათექვსმეტი",
+    "back_side": "тридцать шесть",
+    "topic": "numbers",
+    "transliteration": "otsdatekvsmeti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ოცდაჩვიდმეტი",
+    "back_side": "тридцать семь",
+    "topic": "numbers",
+    "transliteration": "otsdachvidmeti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ოცდათვრამეტი",
+    "back_side": "тридцать восемь",
+    "topic": "numbers",
+    "transliteration": "otsdatvrameti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ოცდაცხრამეტი",
+    "back_side": "тридцать девять",
+    "topic": "numbers",
+    "transliteration": "otsdatskhrameti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ორმოცი",
+    "back_side": "сорок",
+    "topic": "numbers",
+    "transliteration": "ormotsi",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ორმოცდაერთი",
+    "back_side": "сорок один",
+    "topic": "numbers",
+    "transliteration": "ormotsdaerti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ორმოცდაორი",
+    "back_side": "сорок два",
+    "topic": "numbers",
+    "transliteration": "ormotsdaori",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ორმოცდასამი",
+    "back_side": "сорок три",
+    "topic": "numbers",
+    "transliteration": "ormotsdasami",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ორმოცდაოთხი",
+    "back_side": "сорок четыре",
+    "topic": "numbers",
+    "transliteration": "ormotsdaotkhi",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ორმოცდახუთი",
+    "back_side": "сорок пять",
+    "topic": "numbers",
+    "transliteration": "ormotsdakhuti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ორმოცდაექვსი",
+    "back_side": "сорок шесть",
+    "topic": "numbers",
+    "transliteration": "ormotsdaekvsi",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ორმოცდაშვიდი",
+    "back_side": "сорок семь",
+    "topic": "numbers",
+    "transliteration": "ormotsdashvidi",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ორმოცდარვა",
+    "back_side": "сорок восемь",
+    "topic": "numbers",
+    "transliteration": "ormotsdarva",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ორმოცდაცხრა",
+    "back_side": "сорок девять",
+    "topic": "numbers",
+    "transliteration": "ormotsdatskhra",
+    "difficulty": 3
+  },
+  {
+    "front_side": "შეიძლება დაგელაპარაკოთ?",
+    "back_side": "можно с вами поговорить?",
+    "topic": "stranger_chat",
+    "transliteration": "sheidzleba dagelaparakot?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "თქვენ აქ მუშაობთ?",
+    "back_side": "вы здесь работаете?",
+    "topic": "stranger_chat",
+    "transliteration": "tkven ak mushaobt?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "აქ პირველად ვარ",
+    "back_side": "я здесь впервые",
+    "topic": "stranger_chat",
+    "transliteration": "ak pirvelad var",
+    "difficulty": 3
+  },
+  {
+    "front_side": "რომელი უბანი ჯობია?",
+    "back_side": "какой район лучше?",
+    "topic": "stranger_chat",
+    "transliteration": "romeli უბანი jobia?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "უსაფრთხოა აქ ღამით?",
+    "back_side": "здесь безопасно ночью?",
+    "topic": "stranger_chat",
+    "transliteration": "usaprtkhoa ak ghamit?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "კაფეს მირჩევთ?",
+    "back_side": "посоветуете кафе?",
+    "topic": "stranger_chat",
+    "transliteration": "kapes mirchevt?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ეს ქუჩა სწორია?",
+    "back_side": "это правильная улица?",
+    "topic": "stranger_chat",
+    "transliteration": "es kucha stsoria?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ფოტოს გადამიღებთ?",
+    "back_side": "сфотографируете меня?",
+    "topic": "stranger_chat",
+    "transliteration": "potos gadamighebt?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "შეგიძლია მისამართით დამეხმარო?",
+    "back_side": "можешь помочь с адресом?",
+    "topic": "stranger_chat",
+    "transliteration": "shegidzlia misamartit damekhmaro?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "სად შეიძლება დასვენება?",
+    "back_side": "где можно отдохнуть?",
+    "topic": "stranger_chat",
+    "transliteration": "sad sheidzleba dasveneba?",
+    "difficulty": 3
+  },
+  {
+    "front_side": "რამდენი ხანია აქ ცხოვრობ?",
+    "back_side": "как давно ты здесь живешь?",
+    "topic": "stranger_chat",
+    "transliteration": "ramdeni khania ak tskhovrob?",
+    "difficulty": 4
+  },
+  {
+    "front_side": "მე თბილისში ვცხოვრობ ახლა",
+    "back_side": "я сейчас живу в Тбилиси",
+    "topic": "stranger_chat",
+    "transliteration": "me tbilisshi vtskhovrob akhla",
+    "difficulty": 4
+  },
+  {
+    "front_side": "აქ მეგობრები მყავს",
+    "back_side": "у меня здесь друзья",
+    "topic": "stranger_chat",
+    "transliteration": "ak megobrebi mqavs",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ეს ადგილი მომწონს",
+    "back_side": "мне нравится это место",
+    "topic": "stranger_chat",
+    "transliteration": "es adgili momtsons",
+    "difficulty": 3
+  },
+  {
+    "front_side": "აპოსტილი",
+    "back_side": "апостиль",
+    "topic": "public_services",
+    "transliteration": "apostili",
+    "difficulty": 4
+  },
+  {
+    "front_side": "თარგმანი",
+    "back_side": "перевод",
+    "topic": "public_services",
+    "transliteration": "targmani",
+    "difficulty": 4
+  },
+  {
+    "front_side": "ნოტარიუსი",
+    "back_side": "нотариус",
+    "topic": "public_services",
+    "transliteration": "notariusi",
+    "difficulty": 4
+  },
+  {
+    "front_side": "დანიშვნა",
+    "back_side": "запись/назначение",
+    "topic": "public_services",
+    "transliteration": "danishvna",
+    "difficulty": 4
+  },
+  {
+    "front_side": "ელექტრონული რიგი",
+    "back_side": "электронная очередь",
+    "topic": "public_services",
+    "transliteration": "elektronuli rigi",
+    "difficulty": 5
+  },
+  {
+    "front_side": "საკონსულო",
+    "back_side": "консульство",
+    "topic": "public_services",
+    "transliteration": "sakonsulo",
+    "difficulty": 4
+  },
+  {
+    "front_side": "განაცხადის ნომერი",
+    "back_side": "номер заявления",
+    "topic": "public_services",
+    "transliteration": "ganatskhadis nomeri",
+    "difficulty": 5
+  },
+  {
+    "front_side": "მიღების ფანჯარა",
+    "back_side": "окно приема",
+    "topic": "public_services",
+    "transliteration": "mighebis panjara",
+    "difficulty": 5
+  },
+  {
+    "front_side": "სერვისის საფასური",
+    "back_side": "стоимость услуги",
+    "topic": "public_services",
+    "transliteration": "servisis sapasuri",
+    "difficulty": 5
+  },
+  {
+    "front_side": "დაჩქარებული მომსახურება",
+    "back_side": "ускоренное обслуживание",
+    "topic": "public_services",
+    "transliteration": "dachkarebuli momsakhureba",
+    "difficulty": 5
+  },
+  {
+    "front_side": "ჩემი რიგი როდისაა?",
+    "back_side": "когда моя очередь?",
+    "topic": "public_services",
+    "transliteration": "chemi rigi rodisaa?",
+    "difficulty": 5
+  },
+  {
+    "front_side": "სად მივიღო პასუხი?",
+    "back_side": "где получить ответ?",
+    "topic": "public_services",
+    "transliteration": "sad mivigho pasukhi?",
+    "difficulty": 5
+  },
+  {
+    "front_side": "ფორმის შევსება მინდა",
+    "back_side": "хочу заполнить форму",
+    "topic": "public_services",
+    "transliteration": "pormis shevseba minda",
+    "difficulty": 5
+  },
+  {
+    "front_side": "დამხმარე თანამშრომელი",
+    "back_side": "сотрудник помощи",
+    "topic": "public_services",
+    "transliteration": "damkhmare tanamshromeli",
+    "difficulty": 5
+  },
+  {
+    "front_side": "ხველა",
+    "back_side": "кашель",
+    "topic": "pharmacy",
+    "transliteration": "khvela",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ყელის ტკივილი",
+    "back_side": "боль в горле",
+    "topic": "pharmacy",
+    "transliteration": "qelis tkivili",
+    "difficulty": 4
+  },
+  {
+    "front_side": "მუცლის ტკივილი",
+    "back_side": "боль в животе",
+    "topic": "pharmacy",
+    "transliteration": "mutslis tkivili",
+    "difficulty": 4
+  },
+  {
+    "front_side": "წნევა",
+    "back_side": "давление",
+    "topic": "pharmacy",
+    "transliteration": "tsneva",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ვიტამინები",
+    "back_side": "витамины",
+    "topic": "pharmacy",
+    "transliteration": "vitaminebi",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ანტიბიოტიკი",
+    "back_side": "антибиотик",
+    "topic": "pharmacy",
+    "transliteration": "antibiotiki",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ბინტი",
+    "back_side": "бинт",
+    "topic": "pharmacy",
+    "transliteration": "binti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "პლასტირი",
+    "back_side": "пластырь",
+    "topic": "pharmacy",
+    "transliteration": "plastiri",
+    "difficulty": 3
+  },
+  {
+    "front_side": "თერმომეტრი",
+    "back_side": "термометр",
+    "topic": "pharmacy",
+    "transliteration": "termometri",
+    "difficulty": 3
+  },
+  {
+    "front_side": "დეზინფექტანტი",
+    "back_side": "дезинфектант",
+    "topic": "pharmacy",
+    "transliteration": "dezinfektanti",
+    "difficulty": 3
+  },
+  {
+    "front_side": "ეს წამალი საკვების შემდეგ მივიღო?",
+    "back_side": "это лекарство принимать после еды?",
+    "topic": "pharmacy",
+    "transliteration": "es ts'amali sakvebis shemdeg mivigho?",
+    "difficulty": 5
+  },
+  {
+    "front_side": "ბავშვისთვის არის?",
+    "back_side": "это для ребенка?",
+    "topic": "pharmacy",
+    "transliteration": "bavshvistvis aris?",
+    "difficulty": 4
+  },
+  {
+    "front_side": "გვერდითი ეფექტები აქვს?",
+    "back_side": "есть побочные эффекты?",
+    "topic": "pharmacy",
+    "transliteration": "gverdithi epektebi akvs?",
+    "difficulty": 4
+  },
+  {
+    "front_side": "უფრო იაფი ანალოგი გაქვთ?",
+    "back_side": "есть более дешевый аналог?",
+    "topic": "pharmacy",
+    "transliteration": "upro iapi analogi gakvt?",
+    "difficulty": 5
+  }
 ]
